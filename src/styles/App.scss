@@ -1,0 +1,27 @@
+@import "media";
+
+.App {
+	display: grid;
+	grid-template-columns: 240px 1fr;
+	background: #FFFFFF;
+	font-family: "Nunito", serif;
+	height: 100vh;
+
+
+	@include appMedia();
+
+	aside {
+		padding: 0 10px;
+
+	}
+
+	main {
+		margin: 20px 30px 0 30px;
+		border: 1px solid black;
+
+	}
+}
+
+
+
+

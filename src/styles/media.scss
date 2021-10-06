@@ -1,0 +1,41 @@
+@mixin appMedia(){
+  @media(max-width: 500px) {
+    &[data-hidden='true false']{
+      grid-template-columns: 120px 1fr;
+    }
+    grid-template-columns: 40px 1fr;
+  }
+};
+
+
+@mixin sideMedia(){
+  @media(max-width: 500px) {
+    font-size: 8px;
+    line-height: 10px;
+     div{
+       .sidebar__item{
+        margin: 0 0 0 7px;
+         padding: 2px;
+         &:nth-child(4){
+           margin-bottom: 10px;
+         }
+         &:nth-child(10) {
+           margin-bottom: 10px;
+         }
+         img{
+           width: 20%;
+           height: 20%;
+           margin-left: 0;
+         }
+         span{
+           margin-left: 5px;
+         }
+       }
+     }
+    .sidebar__logo{
+      img{
+        padding: 10px 10px 15px 10px;
+      }
+    }
+  }
+};

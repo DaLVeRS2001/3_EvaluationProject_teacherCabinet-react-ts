@@ -1,0 +1,67 @@
+@import '../../styles/assets';
+@import '../../styles/media';
+
+.sidebar {
+  @include flex(null, space-between, column);
+  @include makeText(18px, null, #235390, 22px, 800, break-word, center);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border-radius: 0 10px 10px 0;
+
+  @include sideMedia();
+
+  &[data-hidden=true]{
+    width: 40px;
+    .sidebar__item{
+      margin: 0;
+      &:nth-child(1){
+        transform: scale(-1);
+      }
+      padding-left: 0;
+      img {
+        @include scale(20px, 20px);
+      }
+    }
+    .sidebar__logo {
+      width: 20px;
+      img{
+        padding: 10px 0 15px 0;
+      }
+    }
+  }
+
+  .sidebar__item {
+    @include flex(center, null, null);
+    text-align: left;
+    margin: 0 10px;
+    padding: 6px;
+    border-radius: 20px;
+
+    img {
+      @include scale(35px, 35px);
+      margin-left: 7px;
+    }
+    span {
+      margin-left: 21px;
+    }
+
+    &:nth-child(4){
+      margin-bottom: 25px;
+    }
+    &:nth-child(10) {
+      margin-bottom: 25px;
+    }
+
+    &:nth-child(1n+1):hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
+      cursor: pointer;
+    }
+  }
+
+  &__logo {
+    img {
+      max-width: 100%;
+      padding: 20px 10px 32px 10px;
+    }
+  }
+}

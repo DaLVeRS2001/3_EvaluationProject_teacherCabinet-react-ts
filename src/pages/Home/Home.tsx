@@ -1,15 +1,13 @@
-import {useEffect} from "react";
-import {instance} from "../../API/instance";
+import homeS from "./style.module.scss"
+
+
+
 
 const Home = () => {
 
-    useEffect(()=> {
-        instance()
-    }, [])
-
-    return <>
-        <h1>Home</h1>
-    </>
+    return <div className={homeS.home}>
+    <h1>home</h1>
+    </div>
 }
 
 

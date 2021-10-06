@@ -1,0 +1,23 @@
+@mixin flex($ai, $jc, $fd){
+  display: flex;
+  align-items: $ai;
+  justify-content: $jc;
+  flex-direction: $fd;
+
+}
+@mixin makeText($fs, $ff, $c, $lh, $fw, $ww, $ta){
+  font-size: $fs;
+  font-family: $ff;
+  color: $c;
+  line-height: $lh;
+  font-weight: $fw;
+  word-wrap: $ww;
+  text-align: $ta;
+}
+
+@mixin scale($w, $h){
+  width: $w;
+  height: $h;
+}
+
+
