@@ -1,4 +1,5 @@
 import homeS from "./style.module.scss"
+import MyStudents from "./MyStudents";
 
 
 
@@ -6,7 +7,7 @@ import homeS from "./style.module.scss"
 const Home = () => {
 
     return <div className={homeS.home}>
-    <h1>home</h1>
+        <MyStudents/>
     </div>
 }
 

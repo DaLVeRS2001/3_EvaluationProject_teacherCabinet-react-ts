@@ -1,5 +1,5 @@
-@mixin flex($ai, $jc, $fd){
-  display: flex;
+@mixin flex($df, $ai, $jc, $fd){
+  display: $df;
   align-items: $ai;
   justify-content: $jc;
   flex-direction: $fd;
@@ -15,9 +15,32 @@
   text-align: $ta;
 }
 
+@mixin makeLightText($fs, $fw, $c){
+  font-size: $fs;
+  font-weight: $fw;
+  color: $c;
+}
+
 @mixin scale($w, $h){
   width: $w;
   height: $h;
 }
+
+@mixin boxShadow($br){
+  box-shadow: -1px -1px 20px 1px rgba(0, 0, 0, 0.04), 1px 1px 20px 1px rgba(0, 0, 0, 0.04);
+  border-radius: $br
+}
+
+@mixin gridTemplate($dg, $gtr, $gtc, $grg,$gcg ){
+  display: $dg;
+  grid-template-rows: $gtr;
+  grid-template-columns: $gtc;
+  grid-row-gap: $grg;
+  grid-column-gap: $gcg;
+
+}
+
+
+
 
 

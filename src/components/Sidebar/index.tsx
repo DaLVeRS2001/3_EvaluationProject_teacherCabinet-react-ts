@@ -1,25 +1,27 @@
 import asideS from "./style.module.scss"
+
 import React, {useCallback, useEffect} from "react";
+import {connect} from "react-redux";
 
 import logo from "../../assets/sidebar/logo.svg"
 import shortLogo from "../../assets/sidebar/logo-short.svg"
 
-
 import SideItem from "./SideItem";
 import CertainData from "../../services/getCertainData";
 import {setIsOpenSidebar} from "../../redux/action-creators/appActions";
+
 import {ISidebarConnectState} from "../../types/reducerTypes/app";
-import {connect} from "react-redux";
 import {ISidebarProps} from "../../types/props";
+
 
 
 const Sidebar: React.FC<ISidebarProps> = ({isNeedSize, setIsOpenSidebar}) => {
     const sideItems = new CertainData().getModel().sideItems
 
     useEffect(() => {
-        window.innerWidth <= 500 && setIsOpenSidebar({hidden: true, is: true})
+        window.innerWidth <= 630 && setIsOpenSidebar({hidden: true, is: true})
         window.addEventListener('resize', () => {
-            window.innerWidth <= 500
+            window.innerWidth <= 630
                 ? setIsOpenSidebar({hidden: true, is: true})
                 : setIsOpenSidebar({hidden: false, is: false})
         })
@@ -42,7 +44,7 @@ const Sidebar: React.FC<ISidebarProps> = ({isNeedSize, setIsOpenSidebar}) => {
             })}
         </div>
 
-        <div style={{marginBottom: 15}}>
+        <div>
             {sideItems.map((el, idx) => {
                 if (idx < 9) return null
                 if (idx === 9) return <SideItem

@@ -1,0 +1,28 @@
+@import "../../styles/assets";
+@import "../../styles/media";
+.addBtn{
+  @include addBtnMedia();
+  @include flex(inline-flex, null, flex-start, null);
+  @include makeLightText(19px, bold, null);
+  @include scale(210px, 45px);
+  cursor: pointer;
+  padding: 10px 8px;
+  border-radius: 5px;
+  transition: box-shadow .15s ease-in;
+
+
+
+  &__plus{
+    $size:  23px;
+    @include scale($size,$size);
+    margin-right: 7px;
+    border-radius: 50%;
+
+    &:before {
+      content: "+";
+      @include flex(flex, center, center, null);
+      @include scale($size,$size);
+      @include makeLightText(22px, bolder, white);
+    }
+  }
+}

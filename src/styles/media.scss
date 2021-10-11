@@ -1,41 +1,88 @@
+@import "./assets";
+
+
+$mox-width1: 900px;
+$mox-width2: 630px;
+
+
 @mixin appMedia(){
-  @media(max-width: 500px) {
+  @media(max-width: $mox-width1) {
+    grid-template-columns: 160px 1fr;
+  }
+  @media(max-width: $mox-width2) {
     &[data-hidden='true false']{
-      grid-template-columns: 120px 1fr;
+      grid-template-columns: 160px 1fr;
     }
     grid-template-columns: 40px 1fr;
   }
 };
 
 
-@mixin sideMedia(){
-  @media(max-width: 500px) {
-    font-size: 8px;
-    line-height: 10px;
-     div{
-       .sidebar__item{
-        margin: 0 0 0 7px;
-         padding: 2px;
-         &:nth-child(4){
-           margin-bottom: 10px;
-         }
-         &:nth-child(10) {
-           margin-bottom: 10px;
-         }
-         img{
-           width: 20%;
-           height: 20%;
-           margin-left: 0;
-         }
-         span{
-           margin-left: 5px;
-         }
-       }
-     }
-    .sidebar__logo{
-      img{
-        padding: 10px 10px 15px 10px;
+@mixin sideMedia() {
+  @media(max-width: $mox-width1) {
+    div {
+      .sidebar__item {
+        font-size: 15px;
+        line-height: 15px;
+        img {
+          @include scale(30px, 30px);
+        }
+      }
+    }
+    .sidebar__logo {
+      img {
+        width: 130px;
       }
     }
   }
-};
+}
+
+@mixin studentMedia() {
+  @media(max-width: $mox-width1) {
+    font-size: 16.5px;
+    @include gridTemplate(grid, .3fr .2fr 1fr, 1fr, null, null);
+    .student__title{
+      @include makeLightText(24px, 800, null);
+    }
+    .student__editor{
+      display: block;
+
+       .student__btn{
+         @include gridTemplate(grid, 1fr, .5fr .5fr, null, 10px);
+         justify-items: center;
+      }
+      .student__list{
+        @include makeLightText(20px, 700, #AEAEAE);
+        height: 100px;
+        margin: 15px 0 0 0;
+      }
+    }
+  }
+
+  @media(max-width: $mox-width2) {
+    text-align: center;
+    @include gridTemplate(grid, .25fr .2fr 1fr, 1fr, null, null);
+    .student__editor{
+      .student__btn{
+        @include gridTemplate(grid, 1fr 1fr, 1fr, null, null);
+        justify-items: center;
+      }
+    }
+  }
+}
+
+@mixin addBtnMedia() {
+  @media(max-width: $mox-width1) {
+    @include scale(190px, 40px);
+    @include makeLightText(14px, bold, null);
+    .addBtn__plus{
+      $size:  19px;
+      @include scale($size,$size);
+      &:before{
+        @include scale($size,$size);
+        @include makeLightText(19px, bolder, white);
+      }
+    }
+  }
+
+}

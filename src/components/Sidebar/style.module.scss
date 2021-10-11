@@ -2,55 +2,32 @@
 @import '../../styles/media';
 
 .sidebar {
-  @include flex(null, space-between, column);
-  @include makeText(18px, null, #235390, 22px, 800, break-word, center);
+  @include sideMedia();
+  @include flex(flex, null, space-between, column);
+  @include makeText(22px, null, #235390, 20px, 800, break-word, center);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   border-radius: 0 10px 10px 0;
+  text-align: left;
+  padding: 10%;
 
-  @include sideMedia();
-
-  &[data-hidden=true]{
-    width: 40px;
-    .sidebar__item{
-      margin: 0;
-      &:nth-child(1){
-        transform: scale(-1);
-      }
-      padding-left: 0;
-      img {
-        @include scale(20px, 20px);
-      }
-    }
-    .sidebar__logo {
-      width: 20px;
-      img{
-        padding: 10px 0 15px 0;
-      }
-    }
+  div:nth-child(4), :nth-child(10) {
+    margin-bottom: 20px;
+  }
+  div:nth-child(1){
+    margin-right: 2px;
   }
 
   .sidebar__item {
-    @include flex(center, null, null);
-    text-align: left;
-    margin: 0 10px;
-    padding: 6px;
+    @include flex(flex, center, flex-start, null);
     border-radius: 20px;
+    margin-top: 5px;
 
     img {
-      @include scale(35px, 35px);
-      margin-left: 7px;
+      @include scale(42px, 42px);
     }
-    span {
-      margin-left: 21px;
+    span{
+      margin-left: 10px;
     }
-
-    &:nth-child(4){
-      margin-bottom: 25px;
-    }
-    &:nth-child(10) {
-      margin-bottom: 25px;
-    }
-
     &:nth-child(1n+1):hover {
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
       border-radius: 20px;
@@ -60,8 +37,20 @@
 
   &__logo {
     img {
-      max-width: 100%;
-      padding: 20px 10px 32px 10px;
+      margin: 5px 0 25px 2px;
+    }
+  }
+
+  &[data-hidden=true] {
+    .sidebar__item {
+      &:nth-child(1) {
+        transform: scale(-1);
+      }
+    }
+    .sidebar__logo {
+      img {
+        width: 30px;
+      }
     }
   }
 }

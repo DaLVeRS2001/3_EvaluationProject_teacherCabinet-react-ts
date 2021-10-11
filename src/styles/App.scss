@@ -1,24 +1,17 @@
 @import "media";
 
 .App {
+	overflow-y: hidden;
+	@include appMedia();
 	display: grid;
-	grid-template-columns: 240px 1fr;
-	background: #FFFFFF;
+	grid-template-columns: 220px 1fr;
 	font-family: "Nunito", serif;
 	height: 100vh;
 
-
-	@include appMedia();
-
-	aside {
-		padding: 0 10px;
-
-	}
+	aside {}
 
 	main {
 		margin: 20px 30px 0 30px;
-		border: 1px solid black;
-
 	}
 }
 
