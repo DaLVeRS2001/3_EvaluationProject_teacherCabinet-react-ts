@@ -2,7 +2,7 @@
 
 
 $mox-width1: 900px;
-$mox-width2: 630px;
+$mox-width2: 670px;
 
 
 @mixin appMedia(){
@@ -37,6 +37,7 @@ $mox-width2: 630px;
   }
 }
 
+
 @mixin studentMedia() {
   @media(max-width: $mox-width1) {
     font-size: 16.5px;
@@ -49,7 +50,7 @@ $mox-width2: 630px;
 
        .student__btn{
          @include gridTemplate(grid, 1fr, .5fr .5fr, null, 10px);
-         justify-items: center;
+          & div:nth-child(1){justify-self: flex-end}
       }
       .student__list{
         @include makeLightText(20px, 700, #AEAEAE);
@@ -65,24 +66,47 @@ $mox-width2: 630px;
     .student__editor{
       .student__btn{
         @include gridTemplate(grid, 1fr 1fr, 1fr, null, null);
-        justify-items: center;
+        & div:nth-child(1n){justify-self: center}
       }
     }
   }
 }
 
+
 @mixin addBtnMedia() {
   @media(max-width: $mox-width1) {
-    @include scale(190px, 40px);
-    @include makeLightText(14px, bold, null);
+    @include scale(null, 35px);
+    max-width: 190px;
+    padding: 7px 4px;
+    @include makeLightText(15px, bold, null);
     .addBtn__plus{
-      $size:  19px;
+      $size:  17px;
       @include scale($size,$size);
       &:before{
         @include scale($size,$size);
-        @include makeLightText(19px, bolder, white);
+        @include makeLightText($size, bolder, white);
       }
     }
   }
+}
 
+@mixin noUsersMedia() {
+  @media(max-width: $mox-width1) {
+    @include gridTemplate(grid, .5fr .18fr .2fr, 1fr, 25px, null);
+    font-size: 19px;
+    .noUsers__icon{
+      @include scale(150px, null);
+    }
+  }
+  @media(max-width: $mox-width2) {
+    .noUsers__icon{
+      @include scale(130px, null);
+    }
+  }
+}
+
+@mixin scheduleMedia() {
+  @media(max-width: $mox-width1) {
+
+  }
 }

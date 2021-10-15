@@ -1,0 +1,65 @@
+@import "../../styles/assets";
+@import "../../styles/media";
+
+
+.schedule{
+  @include gridTemplate(grid,  .1fr 1fr, 1fr, null, null);
+  @include boxShadow(20px);
+  position: relative;
+  width: 100%;
+  padding: 20px 25px;
+  font-size: 21px;
+
+
+  &__switchers {
+    hr {
+      border: 0;
+      background: #f5f5f5;
+      height: 1px;
+    }
+  }
+
+  &__table{
+    border-collapse: collapse;
+    @include boxShadow(20px);
+    overflow: hidden;
+    text-align: center;
+
+
+    thead{
+      text-align: center;
+      background: #F1FCFF;
+      th:first-child{
+        border-right: 1px solid #E2E2E2;
+      }
+      th{
+        padding: 15px 0;
+        width: 9%;
+      }
+    }
+    tbody{
+
+      td{
+        position: relative;
+        border-radius: 50%;
+        word-wrap: break-word;
+        div{
+          position: absolute;
+          left: 0;
+          top: 6px;
+          background: #28f663;
+          border-radius: 5px;
+          height: 40px;
+          margin-left: 5px;
+        }
+      }
+      th{
+        border-right: 1px solid #E2E2E2;
+      }
+      tr{
+        border-bottom: 1px solid #E2E2E2;
+      }
+    }
+  }
+}
+

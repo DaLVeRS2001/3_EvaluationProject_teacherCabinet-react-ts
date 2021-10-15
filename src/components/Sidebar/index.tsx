@@ -12,6 +12,7 @@ import {setIsOpenSidebar} from "../../redux/action-creators/appActions";
 
 import {ISidebarConnectState} from "../../types/reducerTypes/app";
 import {ISidebarProps} from "../../types/props";
+import {RootReducers} from "../../redux/reducers";
 
 
 
@@ -19,9 +20,9 @@ const Sidebar: React.FC<ISidebarProps> = ({isNeedSize, setIsOpenSidebar}) => {
     const sideItems = new CertainData().getModel().sideItems
 
     useEffect(() => {
-        window.innerWidth <= 630 && setIsOpenSidebar({hidden: true, is: true})
+        window.innerWidth <= 670 && setIsOpenSidebar({hidden: true, is: true})
         window.addEventListener('resize', () => {
-            window.innerWidth <= 630
+            window.innerWidth <= 670
                 ? setIsOpenSidebar({hidden: true, is: true})
                 : setIsOpenSidebar({hidden: false, is: false})
         })
@@ -57,7 +58,7 @@ const Sidebar: React.FC<ISidebarProps> = ({isNeedSize, setIsOpenSidebar}) => {
     </aside>
 }
 
-const mapStateToProps = (state: any): ISidebarConnectState => ({
+const mapStateToProps = (state: RootReducers): ISidebarConnectState => ({
     isNeedSize: state.app.isOpenSidebar,
 })
 

@@ -26,7 +26,9 @@ class CertainData implements ICertainData{
             {img: studia, title: 'Студия'},
             {img: arrow, title: 'Свернуть'},
             {img: settings, title: 'Настройки'}
-        ]
+        ],
+        weekDays: ['пон', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'],
+        months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
     }
    public getModel(){
         return this._model

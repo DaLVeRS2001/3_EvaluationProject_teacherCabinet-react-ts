@@ -1,4 +1,5 @@
 import {IArgIsOpen} from "./reducerTypes/app";
+import {TUsers} from "./reducerTypes/home";
 
 //SideBar
 export interface ISideProps {
@@ -25,4 +26,15 @@ export interface ICustomAddButtonProps{
     title: string
     onHandler: ()=> void
     style?: {}
+}
+
+//Home
+export interface IHomeProps{
+    getUsers: ()=> void,
+    users: TUsers
+}
+
+//ScheduleTable
+export interface IScheduleTableProps{
+    users: TUsers
 }

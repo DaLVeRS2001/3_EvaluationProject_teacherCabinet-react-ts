@@ -1,0 +1,41 @@
+@import "../../styles/assets";
+@import "../../styles/media";
+
+.student {
+  @include studentMedia();
+  @include gridTemplate(grid, .6fr .4fr .5fr, 1fr, null, null);
+  @include boxShadow(20px);
+  width: 100%;
+  padding: 20px 25px;
+  font-size: 21px;
+
+  &__title {
+    @include makeLightText(30px, 800, null);
+  }
+
+  &__switchers {
+    hr {
+      border: 0;
+      background: #f5f5f5;
+      height: 1px;
+    }
+  }
+
+  &__editor {
+    display: flex;
+
+    .student__btn {
+      @include gridTemplate(grid, 1fr 1fr, null, 10px, null);
+    }
+    .student__list {
+      @include flex(flex, center, center, null);
+      @include makeLightText(25px, 700, #AEAEAE);
+      width: 100%;
+      margin-left: 25px;
+      border: 2px dashed #AEAEAE;
+      padding: 10px;
+    }
+  }
+}
+
+

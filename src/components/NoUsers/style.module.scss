@@ -1,0 +1,15 @@
+@import "../../styles/assets";
+@import "../../styles/media";
+
+
+.noUsers{
+  @include noUsersMedia();
+  @include gridTemplate(grid, 1fr .35fr .2fr, 1fr, 25px, null);
+  margin-top: 50px;
+  justify-items: center;
+  font-size: 25px;
+  text-align: center;
+  &__icon{
+    @include scale(170px, null);
+  }
+}

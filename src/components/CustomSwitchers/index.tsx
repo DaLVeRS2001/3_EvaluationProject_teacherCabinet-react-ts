@@ -22,7 +22,7 @@ const CustomSwitchers: React.FC<ICustomSwitchersProps> = ({titles, onHandler}) =
             {titles.map((title, idx) => {
                 const select = (arr: TSelectedSwitcher): TSelectedSwitcher => {
                     const copyArr = [...arr].map(() => ({selected: false}))
-                    copyArr.splice(idx, 1, {selected: true})
+                    copyArr?.splice(idx, 1, {selected: true})
                     onHandler(title)
                     return copyArr
                 }

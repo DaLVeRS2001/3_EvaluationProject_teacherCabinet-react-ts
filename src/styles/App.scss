@@ -1,7 +1,7 @@
 @import "media";
 
 .App {
-	overflow-y: hidden;
+	overflow-y: auto;
 	@include appMedia();
 	display: grid;
 	grid-template-columns: 220px 1fr;
