@@ -12,6 +12,7 @@ const CustomAddButton: React.FC<ICustomAddButtonProps> = ({btnColor, title, onHa
 
     useEffect(()=> {
         colorError(btnColor)
+        //eslint-disable-next-line
     },[])
 
     return <div

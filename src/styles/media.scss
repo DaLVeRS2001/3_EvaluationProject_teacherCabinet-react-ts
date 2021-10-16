@@ -1,15 +1,16 @@
 @import "./assets";
 
 
-$mox-width1: 900px;
-$mox-width2: 670px;
+$max-width1: 900px;
+$max-width2: 670px;
+$max-width3: 365px;
 
 
 @mixin appMedia(){
-  @media(max-width: $mox-width1) {
+  @media(max-width: $max-width1) {
     grid-template-columns: 160px 1fr;
   }
-  @media(max-width: $mox-width2) {
+  @media(max-width: $max-width2) {
     &[data-hidden='true false']{
       grid-template-columns: 160px 1fr;
     }
@@ -19,7 +20,7 @@ $mox-width2: 670px;
 
 
 @mixin sideMedia() {
-  @media(max-width: $mox-width1) {
+  @media(max-width: $max-width1) {
     div {
       .sidebar__item {
         font-size: 15px;
@@ -39,7 +40,7 @@ $mox-width2: 670px;
 
 
 @mixin studentMedia() {
-  @media(max-width: $mox-width1) {
+  @media(max-width: $max-width1) {
     font-size: 16.5px;
     @include gridTemplate(grid, .3fr .2fr 1fr, 1fr, null, null);
     .student__title{
@@ -60,7 +61,7 @@ $mox-width2: 670px;
     }
   }
 
-  @media(max-width: $mox-width2) {
+  @media(max-width: $max-width2) {
     text-align: center;
     @include gridTemplate(grid, .25fr .2fr 1fr, 1fr, null, null);
     .student__editor{
@@ -74,7 +75,7 @@ $mox-width2: 670px;
 
 
 @mixin addBtnMedia() {
-  @media(max-width: $mox-width1) {
+  @media(max-width: $max-width1) {
     @include scale(null, 35px);
     max-width: 190px;
     padding: 7px 4px;
@@ -90,23 +91,64 @@ $mox-width2: 670px;
   }
 }
 
+
 @mixin noUsersMedia() {
-  @media(max-width: $mox-width1) {
+  @media(max-width: $max-width1) {
     @include gridTemplate(grid, .5fr .18fr .2fr, 1fr, 25px, null);
     font-size: 19px;
     .noUsers__icon{
       @include scale(150px, null);
     }
   }
-  @media(max-width: $mox-width2) {
+  @media(max-width: $max-width2) {
     .noUsers__icon{
       @include scale(130px, null);
     }
   }
 }
 
-@mixin scheduleMedia() {
-  @media(max-width: $mox-width1) {
 
+@mixin scheduleMedia() {
+  @media(max-width: $max-width1) {
+
+  }
+}
+
+
+@mixin addStudModalMedia() {
+  @media(max-width: $max-width1) {
+    .studModal__inner{
+      header{font-size: 13px}
+      main{
+        font-size: 19px;
+        input{width: 250px; font-size: 16px}
+      }
+      footer{ @include customBtn(16px, #fff, #235490, 10px, 8px 80px) }
+    }
+  }
+  @media(max-width: $max-width2) {
+    .studModal__inner{
+      max-width: 350px;
+      header{
+        font-size: 10px;
+        img{top: 10px}
+      }
+      main{
+        font-size: 16px;
+        input{
+          display: flex;
+          width: 230px;
+          font-size: 13px;
+        }
+        br{display: none}
+      }
+      footer{@include customBtn(13px, #fff, #235490, 10px, 8px 60px)}
+    }
+  }
+  @media(max-width: $max-width3) {
+    .studModal__inner{
+      main{ input{width: 160px} }
+      footer{ @include customBtn(12px, #fff, #235490, 10px, 8px 30px) }
+    }
   }
 }

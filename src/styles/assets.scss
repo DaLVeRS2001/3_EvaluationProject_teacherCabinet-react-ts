@@ -1,3 +1,26 @@
+%inlineWrapper{
+  .inlineWrapper{
+    display: inline-flex;
+    flex-direction: column;
+    text-align: right;
+  }
+}
+
+@mixin customBtn($fs, $c, $bg, $br, $p){
+  button{
+    font-size: $fs;
+    color: $c;
+    background:$bg;
+    border-radius: $br;
+    padding: $p;
+    border:  none;
+    transition: box-shadow ease-in .2s;
+    &:hover{
+      box-shadow: 3px 3px 10px $bg;
+    }
+  }
+}
+
 @mixin flex($df, $ai, $jc, $fd){
   display: $df;
   align-items: $ai;

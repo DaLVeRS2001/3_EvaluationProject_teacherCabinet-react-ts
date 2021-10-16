@@ -2,9 +2,10 @@ import React, {useState} from "react";
 import studS from "./style.module.scss"
 import CustomSwitchers from "../../components/CustomSwitchers";
 import CustomAddButton from "../../components/CustomAddBtn";
+import {IMyStudentsProps} from "../../types/props";
 
 
-const MyStudents:React.FC = () => {
+const MyStudents:React.FC<IMyStudentsProps> = ({handlerStudModal}) => {
     const [selectedBlock, setSelectedBlock] = useState<null|string>(null)
 
     return (
@@ -19,7 +20,7 @@ const MyStudents:React.FC = () => {
             <div className={studS.student__editor}>
                 <div className={studS.student__btn}>
                     <CustomAddButton
-                        onHandler={()=> console.log('kek')} btnColor={'#235390'}
+                        onHandler={()=> handlerStudModal()} btnColor={'#235390'}
                         title={'Добавить ученика'}
                     />
                     <CustomAddButton onHandler={()=> console.log('kek')} btnColor={'#C200AF'} title={'Создать группу'}/>

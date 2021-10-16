@@ -2,12 +2,12 @@ import React from "react";
 import noUsersS from "./style.module.scss"
 import calendar from "../../assets/calendar.svg"
 import CustomAddButton from "../CustomAddBtn";
+import {INoUsersProps} from "../../types/props";
 
 
-interface INoUsersProps{
-}
 
-const NoUsers: React.FC<INoUsersProps> = () => {
+
+const NoUsers: React.FC<INoUsersProps> = ({handlerStudModal}) => {
 
 
 
@@ -16,7 +16,7 @@ const NoUsers: React.FC<INoUsersProps> = () => {
             <img className={noUsersS.noUsers__icon}  src={calendar} alt="Calendar"/>
             <span>Для планирования уроков в расписании<br/> сначала добавьте учеников</span>
             <CustomAddButton
-                btnColor={'#ef4934'} title={'Добавить ученика'} onHandler={()=> console.log('kek')}
+                btnColor={'#ef4934'} title={'Добавить ученика'} onHandler={()=> handlerStudModal()}
             />
         </div>
     )

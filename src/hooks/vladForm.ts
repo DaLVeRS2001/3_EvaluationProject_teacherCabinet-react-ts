@@ -4,13 +4,12 @@ import React from "react";
 
 interface IFieldNames{
 	[key: string]: {
-		validation: string[],
+		validation: (string|undefined)[],
 		value: string | null
 	}
 }
-type mapType<T> = [keyof T, string[]][]
+type mapType<T> = [keyof T, (string | undefined)[]][]
 type emptyFieldsType<T> =  {[K in keyof T]: {}}
-
 
 
 const useVladForm = (
@@ -26,18 +25,21 @@ const useVladForm = (
 
 	const fieldKeys: string[] =  Object.keys(fieldNames),
 		fieldMap: mapType<typeof fieldNames> = fieldKeys?.map(field=> [field, [...fieldNames[field].validation?.filter(el=> el)]]),
-		fieldErrors: Map<string | number, string[]> = new Map(fieldMap)
+		fieldErrors: Map<string | number, (string | undefined)[]> = new Map(fieldMap)
 
 	const values: (string | null)[] = fieldKeys.map((el)=> fieldNames[el]?.value),
 		emptyFields: emptyFieldsType<typeof fieldNames> = Object.fromEntries(fieldKeys?.map (field=> [field, []]))
 
+
+
 	useEffect(()=> {
 		rerender < 2 && setRerender(rerender+1)
 
-		fieldKeys.every((key, idx) =>
+		fieldKeys.every((key) =>
 			!Object.fromEntries(fieldErrors)[key].length)
 				? setFormValid(true)
 				: setFormValid(false)
+
 
 	},[...values, submitCount, isSubmit, ...additionalDependencies])
 
@@ -73,7 +75,8 @@ const useVladForm = (
 			? Object.fromEntries(fieldErrors)
 			: emptyFields,
 		handleSub, errorReset,
-		formData: {isSubmit, submitCount, formValid}}
+		formData: {isSubmit, submitCount, formValid}
+	}
 }
 
 export default useVladForm
@@ -118,7 +121,7 @@ export default useVladForm
 
 // <InputWithInfo
 // infoText={''}
-// errorMessage={vErrors.inputName[0]}
+// 1.errorMessage={vErrors.inputName[0]} 2. если ts: errorMessage={vErrors.inputName}, и в самой компоненте arg[0]
 // >
 // 	<input
 // placeholder='Номер телефона'
