@@ -27,14 +27,17 @@
     .student__btn {
       @include gridTemplate(grid, 1fr 1fr, null, 10px, null);
     }
-    .student__list {
-      @include flex(flex, center, center, null);
-      @include makeLightText(25px, 700, #AEAEAE);
-      width: 100%;
-      margin-left: 25px;
-      border: 2px dashed #AEAEAE;
-      padding: 10px;
+
+    .student__lists[data-noData=true]{
+        @include flex(flex, center, center, null);
+        @include makeLightText(25px, 700, #AEAEAE);
+        width: 100%;
+        margin-left: 25px;
+        border: 2px dashed #AEAEAE;
+        padding: 10px;
+
     }
+
   }
 }
 

@@ -51,6 +51,7 @@ export interface INoUsersProps{
 //MyStudents
 export interface IMyStudentsProps{
     handlerStudModal: ()=> void
+    students: TUsers
 }
 
 //AddStudModal

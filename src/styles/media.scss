@@ -53,7 +53,7 @@ $max-width3: 365px;
          @include gridTemplate(grid, 1fr, .5fr .5fr, null, 10px);
           & div:nth-child(1){justify-self: flex-end}
       }
-      .student__list{
+      .student__lists{
         @include makeLightText(20px, 700, #AEAEAE);
         height: 100px;
         margin: 15px 0 0 0;
@@ -72,6 +72,9 @@ $max-width3: 365px;
     }
   }
 }
+
+
+
 
 
 @mixin addBtnMedia() {

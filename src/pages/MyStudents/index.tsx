@@ -3,10 +3,12 @@ import studS from "./style.module.scss"
 import CustomSwitchers from "../../components/CustomSwitchers";
 import CustomAddButton from "../../components/CustomAddBtn";
 import {IMyStudentsProps} from "../../types/props";
+import StudentList from "../StudentList";
 
 
-const MyStudents:React.FC<IMyStudentsProps> = ({handlerStudModal}) => {
+const MyStudents:React.FC<IMyStudentsProps> = ({handlerStudModal, students}) => {
     const [selectedBlock, setSelectedBlock] = useState<null|string>(null)
+
 
     return (
         <div className={studS.student}>
@@ -25,10 +27,13 @@ const MyStudents:React.FC<IMyStudentsProps> = ({handlerStudModal}) => {
                     />
                     <CustomAddButton onHandler={()=> console.log('kek')} btnColor={'#C200AF'} title={'Создать группу'}/>
                 </div>
-                <div className={studS.student__list}>
+                <div
+                    data-noData={selectedBlock === 'Ученики' && !students.length}
+                    className={studS.student__lists}
+                >
                     {
                         selectedBlock === 'Ученики'
-                            ? '+ Добавте своего первого ученика'
+                            ? <StudentList students={students} />
                             : '+ Добавте свою первую группу'
                     }
                 </div>

@@ -24,8 +24,8 @@ const Home: React.FC<IHomeProps> =
     return <div className={homeS.home}>
         {invitFetched && <InvitationSuccessModal/>}
         {isStudModalOn && <AddStudModal handlerStudModal={handlerStudModal}/>}
-        <MyStudents handlerStudModal={handlerStudModal}/>
-        {!users.length ? <NoUsers handlerStudModal={handlerStudModal}/> :  <ScheduleTable users={users}/>}
+        <MyStudents students={users} handlerStudModal={handlerStudModal}/>
+        {!users.length ? <NoUsers handlerStudModal={handlerStudModal}/> : <ScheduleTable users={users}/>}
     </div>
 }
 

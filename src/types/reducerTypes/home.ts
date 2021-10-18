@@ -50,9 +50,5 @@ export interface IHomeConnectState{
 export interface IStudModalConnectState{
     studModal: TStudModal
 }
-export interface IInvitSuccessModalConnectState{
-    invitFetched: boolean
-}
-
 
 
