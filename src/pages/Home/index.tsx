@@ -8,12 +8,13 @@ import {connect} from "react-redux";
 import React, {useEffect} from "react";
 import {IHomeProps} from "../../types/props";
 import NoUsers from "../../components/NoUsers";
-import AddStudModal from "../../components/AddStudModal";
+import AddStudModal from "../../components/Modals/AddStudModal";
+import InvitationSuccessModal from "../../components/Modals/InvitationSuccessModal";
 
 
 
 const Home: React.FC<IHomeProps> =
-    ({getUsers, handlerStudModal, users, isStudModalOn}) => {
+    ({getUsers, handlerStudModal, users, isStudModalOn, invitFetched}) => {
 
     useEffect(()=> {
         getUsers()
@@ -21,6 +22,7 @@ const Home: React.FC<IHomeProps> =
     }, [])
 
     return <div className={homeS.home}>
+        {invitFetched && <InvitationSuccessModal/>}
         {isStudModalOn && <AddStudModal handlerStudModal={handlerStudModal}/>}
         <MyStudents handlerStudModal={handlerStudModal}/>
         {!users.length ? <NoUsers handlerStudModal={handlerStudModal}/> :  <ScheduleTable users={users}/>}
@@ -30,7 +32,8 @@ const Home: React.FC<IHomeProps> =
 
 const mapStateToProps = (state: RootReducers):IHomeConnectState => ({
     users: state.home.users,
-    isStudModalOn: state.home.studModal.isOn
+    isStudModalOn: state.home.studModal.isOn,
+    invitFetched: state.home.studModal.invitFetched
 })
 
 

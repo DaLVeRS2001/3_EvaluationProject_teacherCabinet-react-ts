@@ -1,0 +1,16 @@
+@import "../../../styles/assets";
+@import "../../../styles/media";
+
+
+form{
+  display: contents;
+    main{
+      @extend %inlineWrapper;
+      input{
+        width: 300px;
+        font-size: 18px;
+      }
+    }
+
+  @include addStudModalMedia();
+}

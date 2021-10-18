@@ -115,40 +115,58 @@ $max-width3: 365px;
 }
 
 
-@mixin addStudModalMedia() {
+@mixin customModalMedia() {
   @media(max-width: $max-width1) {
-    .studModal__inner{
+    .customModal__inner{
       header{font-size: 13px}
       main{
         font-size: 19px;
-        input{width: 250px; font-size: 16px}
       }
       footer{ @include customBtn(16px, #fff, #235490, 10px, 8px 80px) }
     }
   }
   @media(max-width: $max-width2) {
-    .studModal__inner{
+    .customModal__inner{
       max-width: 350px;
       header{
         font-size: 10px;
         img{top: 10px}
       }
-      main{
-        font-size: 16px;
-        input{
-          display: flex;
-          width: 230px;
-          font-size: 13px;
-        }
-        br{display: none}
-      }
-      footer{@include customBtn(13px, #fff, #235490, 10px, 8px 60px)}
+      main{font-size: 16px;}
+      footer{ @include customBtn(13px, #fff, #235490, 10px, 8px 60px) }
     }
   }
   @media(max-width: $max-width3) {
-    .studModal__inner{
-      main{ input{width: 160px} }
+    .customModal__inner{
       footer{ @include customBtn(12px, #fff, #235490, 10px, 8px 30px) }
     }
+  }
+}
+
+@mixin addStudModalMedia() {
+  @media(max-width: $max-width1) {
+          main{ input{width: 250px; font-size: 16px} }
+  }
+  @media(max-width: $max-width2) {
+       main {
+         input {
+           display: flex;
+           width: 230px;
+           font-size: 13px;
+         }
+         br {display: none}
+       }
+  }
+  @media(max-width: $max-width3) {
+    main { input {width: 160px} }
+  }
+}
+
+@mixin invitationSuccessModalMedia() {
+  @media(max-width: $max-width1) {
+    main{ img{width: 55px} }
+  }
+  @media(max-width: $max-width2) {
+    main{ img{width: 50px} }
   }
 }

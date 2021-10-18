@@ -4,6 +4,7 @@ import {HomeActions, HomeActionTypes, IHomeState} from "../../types/reducerTypes
 const initialState:IHomeState = {
     users: [],
     studModal: {
+        invitFetched: false,
         isOn: false,
         fields: {
             name: '',
@@ -36,7 +37,12 @@ const homeReducer = (state = initialState, action: HomeActions):IHomeState  => {
         case HomeActionTypes.HOME_FIELDS_RESET:
             return {
                 ...state,
-                studModal: {...initialState.studModal}
+                studModal: {...state.studModal, fields: initialState.studModal.fields}
+            }
+        case HomeActionTypes.STUD_INVIT_FETCHED:
+            return {
+                ...state,
+                studModal: {...state.studModal, invitFetched: !state.studModal.invitFetched}
             }
 
         default:

@@ -1,0 +1,19 @@
+@import "../../../styles/assets";
+@import "../../../styles/media";
+
+
+.invitModal{
+
+    display: contents;
+    main{
+        font-weight: bold;
+        div{
+            margin: 0 20px;
+        }
+        img{
+            width: 60px;
+            margin-bottom: 20px;
+        }
+    }
+    @include invitationSuccessModalMedia();
+}

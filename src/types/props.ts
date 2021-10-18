@@ -33,8 +33,9 @@ export interface ICustomAddButtonProps{
 export interface IHomeProps{
     getUsers: ()=> void
     handlerStudModal: ()=> void
-    users: TUsers,
+    users: TUsers
     isStudModalOn: boolean
+    invitFetched: boolean
 }
 
 //ScheduleTable
@@ -54,10 +55,11 @@ export interface IMyStudentsProps{
 
 //AddStudModal
 export interface IAddStudModalProps{
+    studModal: TStudModal
     changeModalInput: (arg: {val: string, type: string})=> void
-    studModal: TStudModal,
     handlerStudModal: ()=> void
     resetHomeFields: ()=> void
+    requestStudInvitation: ()=> void
 }
 
 //ModalInput
@@ -70,4 +72,17 @@ export interface IModalInput{
     handler: (arg: {val: string, type: string})=> void
     fieldError?: any
     style?: {}
+}
+
+//InvitationSuccessModal
+export interface IInviSuccessModalProps{
+    requestStudInvitation: ()=> void
+}
+
+//#CustomModal
+export interface ICustomModalProps{
+    modalHandler: ()=> void
+    headerTitle: string
+    btnTitle: string
+    btnHandler?: ()=> void
 }
