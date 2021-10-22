@@ -2,6 +2,7 @@
 @import "../../styles/media";
 
 .home{
-  @include gridTemplate(grid, .5fr 1fr, 1fr, 17px, null);
+  @include homeMedia();
+  @include gridTemplate(grid, null, null, 17px, null);
 }
 

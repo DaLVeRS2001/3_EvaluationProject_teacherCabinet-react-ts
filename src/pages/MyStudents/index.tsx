@@ -28,13 +28,13 @@ const MyStudents:React.FC<IMyStudentsProps> = ({handlerStudModal, students}) => 
                     <CustomAddButton onHandler={()=> console.log('kek')} btnColor={'#C200AF'} title={'Создать группу'}/>
                 </div>
                 <div
-                    data-noData={selectedBlock === 'Ученики' && !students.length}
+                    data-nodata={(selectedBlock === 'Ученики' && !students?.length) || (selectedBlock !== 'Ученики')}
                     className={studS.student__lists}
                 >
                     {
                         selectedBlock === 'Ученики'
                             ? <StudentList students={students} />
-                            : '+ Добавте свою первую группу'
+                            : <div><span>+ Добавте свою первую группу</span></div>
                     }
                 </div>
             </div>

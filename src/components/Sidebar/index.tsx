@@ -13,16 +13,21 @@ import {setIsOpenSidebar} from "../../redux/action-creators/appActions";
 import {ISidebarConnectState} from "../../types/reducerTypes/app";
 import {ISidebarProps} from "../../types/props";
 import {RootReducers} from "../../redux/reducers";
+import getMedia from "../../services/getMedia";
 
 
 
 const Sidebar: React.FC<ISidebarProps> = ({isNeedSize, setIsOpenSidebar}) => {
     const sideItems = new CertainData().getModel().sideItems
+    const {maxWidthMedias} = getMedia()
+
+
 
     useEffect(() => {
-        window.innerWidth <= 670 && setIsOpenSidebar({hidden: true, is: true})
+        window.innerWidth <= maxWidthMedias[1] && setIsOpenSidebar({hidden: true, is: true})
         window.addEventListener('resize', () => {
-            window.innerWidth <= 670
+            const WI = window.innerWidth
+            WI <= maxWidthMedias[1]
                 ? setIsOpenSidebar({hidden: true, is: true})
                 : setIsOpenSidebar({hidden: false, is: false})
         })

@@ -1,0 +1,42 @@
+@import '../../styles/assets';
+@import '../../styles/media';
+
+.searchStud{
+  margin-top: 20px;
+
+  &__search{
+    position: relative;
+    input{
+      @include scale(80%, 23px);
+      border: 1px solid #AAAAAA;
+      border-radius: 10px;
+      padding: 13px 30px;
+    }
+    img{
+      @include scale(13px, 13px);
+      position: absolute;
+      left: 30px;
+      top: 8px;
+    }
+  }
+  &__list{
+    margin: 12px 0 0 30px;
+    .searchStud__item{
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+      img{
+        margin-right: 5px;
+      }
+    }
+  }
+  &__arrow{
+    cursor: pointer;
+    width: 13px;
+    transition: width ease-in .1s;
+
+    &:hover{
+      width: 15px;
+    }
+  }
+}

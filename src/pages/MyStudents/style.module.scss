@@ -3,7 +3,7 @@
 
 .student {
   @include studentMedia();
-  @include gridTemplate(grid, .6fr .4fr .5fr, 1fr, null, null);
+  @include gridTemplate(grid, null, null, 20px, null);
   @include boxShadow(20px);
   width: 100%;
   padding: 20px 25px;
@@ -22,20 +22,22 @@
   }
 
   &__editor {
-    display: flex;
+    @include gridTemplate(grid, null, 0fr 1fr, null, 25px);
 
     .student__btn {
-      @include gridTemplate(grid, 1fr 1fr, null, 10px, null);
+      @include gridTemplate(grid, null, null, 10px, null);
     }
 
-    .student__lists[data-noData=true]{
+    .student__lists[data-nodata=true] {
+      width: 100%;
+      margin-left: 25px;
+      border: 2px dashed #AEAEAE;
+      padding: 10px;
+      @include flex(flex, center, center, null);//временно для групп
+      div {
         @include flex(flex, center, center, null);
         @include makeLightText(25px, 700, #AEAEAE);
-        width: 100%;
-        margin-left: 25px;
-        border: 2px dashed #AEAEAE;
-        padding: 10px;
-
+      }
     }
 
   }

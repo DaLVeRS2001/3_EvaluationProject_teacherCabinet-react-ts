@@ -3,7 +3,7 @@
 
 $max-width1: 900px;
 $max-width2: 670px;
-$max-width3: 365px;
+$max-width3: 400px;
 
 
 @mixin appMedia(){
@@ -38,11 +38,20 @@ $max-width3: 365px;
   }
 }
 
+@mixin homeMedia() {
+  @media (max-width: 400px) {
+    @include gridTemplate(grid, null, 70vw, 17px, null);
+    justify-content: center;
+
+  }
+  @media (max-width: 350px) {
+    @include gridTemplate(grid, null, 240px, 17px, null);
+  }
+}
 
 @mixin studentMedia() {
   @media(max-width: $max-width1) {
     font-size: 16.5px;
-    @include gridTemplate(grid, .3fr .2fr 1fr, 1fr, null, null);
     .student__title{
       @include makeLightText(24px, 800, null);
     }
@@ -50,11 +59,13 @@ $max-width3: 365px;
       display: block;
 
        .student__btn{
-         @include gridTemplate(grid, 1fr, .5fr .5fr, null, 10px);
+         @include gridTemplate(grid, 1fr, 1fr 1fr, null, 10px);
           & div:nth-child(1){justify-self: flex-end}
       }
-      .student__lists{
-        @include makeLightText(20px, 700, #AEAEAE);
+      .student__lists[data-nodata=true]{
+        div{
+          @include makeLightText(20.5px, 700, #AEAEAE);
+        }
         height: 100px;
         margin: 15px 0 0 0;
       }
@@ -63,7 +74,7 @@ $max-width3: 365px;
 
   @media(max-width: $max-width2) {
     text-align: center;
-    @include gridTemplate(grid, .25fr .2fr 1fr, 1fr, null, null);
+
     .student__editor{
       .student__btn{
         @include gridTemplate(grid, 1fr 1fr, 1fr, null, null);
@@ -97,7 +108,7 @@ $max-width3: 365px;
 
 @mixin noUsersMedia() {
   @media(max-width: $max-width1) {
-    @include gridTemplate(grid, .5fr .18fr .2fr, 1fr, 25px, null);
+    @include gridTemplate(grid, null, null, 25px, null);
     font-size: 19px;
     .noUsers__icon{
       @include scale(150px, null);
@@ -171,5 +182,21 @@ $max-width3: 365px;
   }
   @media(max-width: $max-width2) {
     main{ img{width: 50px} }
+  }
+}
+
+@mixin cSliderMedia() {
+  @media(max-width: 1300px) {max-width: 550px}
+  @media(max-width: 1150px) {max-width: 350px}
+  @media(max-width: 1000px) {max-width: 300px}
+  @media(max-width: $max-width1) {max-width: 400px}
+  @media(max-width: $max-width2) {
+    max-width: 250px;
+    img{@include scale(21px, 21px)}
+    .cSlider__container{
+      margin: 0 20px;
+      font-size: 18px;
+      .cSlider__wrapper{ .cSlider__list{ .cSlider__item{ img{@include scale(40px, 40px)} } } }
+    }
   }
 }

@@ -1,5 +1,5 @@
 import {IArgIsOpen} from "./reducerTypes/app";
-import {TStudModal, TUsers} from "./reducerTypes/home";
+import {TCommonUsers, TStudModal, TUser, TUsers} from "./reducerTypes/home";
 import {resetHomeFields} from "../redux/action-creators/homeActions";
 
 //SideBar
@@ -61,6 +61,7 @@ export interface IAddStudModalProps{
     handlerStudModal: ()=> void
     resetHomeFields: ()=> void
     requestStudInvitation: ()=> void
+    addStudent: (student: TUser)=> void
 }
 
 //ModalInput
@@ -86,4 +87,11 @@ export interface ICustomModalProps{
     headerTitle: string
     btnTitle: string
     btnHandler?: ()=> void
+}
+
+//CustomSlider
+export interface ICustomSlider{
+    items: TCommonUsers
+    skippedItemsCount?: number
+    shownItemCount?: number
 }

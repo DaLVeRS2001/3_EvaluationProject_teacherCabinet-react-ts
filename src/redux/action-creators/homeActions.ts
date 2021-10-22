@@ -1,11 +1,15 @@
 import {Dispatch} from "redux";
-import {HomeActions, HomeActionTypes} from "../../types/reducerTypes/home";
+import {HomeActions, HomeActionTypes, TUser} from "../../types/reducerTypes/home";
 import {TDefaultAC} from "../../types/#common";
 import homeApi from "../../API/homeApi";
 
 export const getUsers: TDefaultAC = () => (dispatch: Dispatch<HomeActions>):void => {
         homeApi.getAllStudents()
             .then((students)=> dispatch({type: HomeActionTypes.ALL_USERS, payload: students}))
+    },
+    addStudent: TDefaultAC = (student: TUser) => (dispatch: Dispatch<HomeActions>):void => {
+        homeApi.addStudent(student)
+            .then((students)=> dispatch({type: HomeActionTypes.ADD_STUDENT, payload: [students]}))
     },
     handlerStudModal:TDefaultAC = () => (dispatch: Dispatch<HomeActions>):void=> {
          dispatch({type: HomeActionTypes.IS_STUDENT_MODAL_ON})

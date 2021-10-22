@@ -44,6 +44,11 @@ const homeReducer = (state = initialState, action: HomeActions):IHomeState  => {
                 ...state,
                 studModal: {...state.studModal, invitFetched: !state.studModal.invitFetched}
             }
+        case HomeActionTypes.ADD_STUDENT:
+            return {
+                ...state,
+                users: [...state.users, ...action.payload]
+            }
 
         default:
             return state

@@ -1,5 +1,7 @@
 //ALIASES
-export type TUsers = {name: string}[]
+export type TUser = {name: string, email: string}
+export type TUsers = TUser[]
+export type TCommonUsers = {name: string, [key: string]: any}[]
 export type TStudModal = {invitFetched: boolean, isOn: boolean, fields: {name: string, email: string}}
 
 //RootState
@@ -11,6 +13,7 @@ export interface IHomeState {
 //ENUMS
 export enum HomeActionTypes{
     ALL_USERS= 'ALL_USERS',
+    ADD_STUDENT= 'ADD_STUDENT',
     IS_STUDENT_MODAL_ON= 'IS_STUDENT_MODAL_ON',
     STUD_MODAL_INPUT= 'STUD_MODAL_INPUT',
     STUD_INVIT_FETCHED= 'STUD_INVIT_FETCHED',
@@ -36,10 +39,16 @@ interface IHomeFieldResetAction{
 interface IStudInvitFetchedAction{
     type: HomeActionTypes.STUD_INVIT_FETCHED,
 }
+interface IAddStudentAction{
+    type: HomeActionTypes.ADD_STUDENT,
+    payload: [TUser]
+}
+
 
 
 //RootActionsType
-export type HomeActions = IUsersAction | IStudModalAction | IStudModalInputAction | IHomeFieldResetAction | IStudInvitFetchedAction
+export type HomeActions = IUsersAction | IStudModalAction | IStudModalInputAction
+    | IHomeFieldResetAction | IStudInvitFetchedAction | IAddStudentAction
 
 //CONNECT STATES
 export interface IHomeConnectState{

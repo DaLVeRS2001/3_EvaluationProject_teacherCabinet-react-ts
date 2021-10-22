@@ -2,6 +2,48 @@
 @import "../../styles/media";
 
 
-.cSlider{
+.cSlider {
+  @include cSliderMedia();
+  max-width: 650px;
+  margin: 0 auto;
 
+  &__container {
+    margin: 0 50px;
+
+
+    .cSlider__wrapper {
+      overflow: hidden;
+
+      .cSlider__list {
+        display: flex;
+        transition: transform ease-in .3s;
+
+        .cSlider__item {
+          @include flex(flex, center, center, column);
+          height: 100px;
+          img {
+            @include scale(55px, 55px)
+          }
+        }
+      }
+    }
+
+    .cSlider__control {
+      position: absolute;
+      bottom: 35%;
+      width: 30px;
+      cursor: pointer;
+      transition: width .1s ease-in;
+
+      &:hover{width: 32px;}
+
+      &[data-control="next"]{
+        right: 0;
+      }
+      &[data-control="prev"]{
+        transform: scale(-1);
+        left: 0;
+      }
+    }
+  }
 }

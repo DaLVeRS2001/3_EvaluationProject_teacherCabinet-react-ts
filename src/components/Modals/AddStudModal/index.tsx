@@ -3,24 +3,29 @@ import studModalS from "./style.module.scss"
 import ModalInput from "../../ModalInput";
 import {IStudModalConnectState} from "../../../types/reducerTypes/home";
 import {RootReducers} from "../../../redux/reducers";
-import {changeModalInput, requestStudInvitation, resetHomeFields} from "../../../redux/action-creators/homeActions";
+import {
+    addStudent,
+    changeModalInput,
+    requestStudInvitation,
+    resetHomeFields
+} from "../../../redux/action-creators/homeActions";
 import {connect} from "react-redux";
 import {IAddStudModalProps} from "../../../types/props";
 import vladForm from "../../../hooks/vladForm";
-import {isMax, isRequired} from "../../../services/validators";
+import {isMax, isRequired, isSpace} from "../../../services/validators";
 import {TDefaultValidFunc} from "../../../types/validators";
 import CustomModal from "../#CustomModal";
 
 
-const toMax: TDefaultValidFunc= isMax(15)
+const toMax: TDefaultValidFunc= isMax(11)
 
 const AddStudModal: React.FC<IAddStudModalProps> =
-    ({studModal, changeModalInput, handlerStudModal, resetHomeFields, requestStudInvitation}) => {
+    ({studModal, changeModalInput, handlerStudModal, resetHomeFields, requestStudInvitation, addStudent}) => {
 
     const {vErrors, handleSub} = vladForm({
         'name': {
             value: studModal.fields.name,
-            validation: [isRequired(studModal.fields.name), toMax(studModal.fields.name)]
+            validation: [isRequired(studModal.fields.name), toMax(studModal.fields.name), isSpace(studModal.fields.name)]
         },
         'email': {value: studModal.fields.email, validation: [isRequired(studModal.fields.email)]},
     }, );
@@ -33,9 +38,10 @@ const AddStudModal: React.FC<IAddStudModalProps> =
 
     const onSubmit = () => {
             new Promise((res => {
+                addStudent({...studModal.fields})
                 handlerStudModal()
                 res('')
-            })).then(()=> requestStudInvitation())
+            })).then(()=>requestStudInvitation())
     }
 
     return<form
@@ -66,5 +72,5 @@ const mapStateToProps = (state: RootReducers):IStudModalConnectState => ({
 })
 
 export default connect(mapStateToProps, {
-    changeModalInput, resetHomeFields, requestStudInvitation
+    changeModalInput, resetHomeFields, requestStudInvitation, addStudent
 })(AddStudModal)
