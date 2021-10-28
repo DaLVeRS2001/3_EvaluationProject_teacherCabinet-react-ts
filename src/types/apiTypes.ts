@@ -1,5 +1,6 @@
 import {Method} from "axios";
 import {TUser, TUsers} from "./reducerTypes/home";
+import {TLessonDates} from "./reducerTypes/schedule";
 
 
 //COMMON
@@ -14,4 +15,9 @@ export interface IHomeApi {
     // getOneStudent: (id: IdType) => Promise<void>
     addStudent: (body: TUser) => Promise<TUser>
     // deleteStudent: (id: IdType) => Promise<void>
+}
+
+//SCHEDULE
+export interface IScheduleApi {
+    getAllLessonDates: () => Promise<TLessonDates>
 }

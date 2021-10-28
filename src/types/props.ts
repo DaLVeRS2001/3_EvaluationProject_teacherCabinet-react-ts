@@ -1,6 +1,7 @@
 import {IArgIsOpen} from "./reducerTypes/app";
 import {TCommonUsers, TStudModal, TUser, TUsers} from "./reducerTypes/home";
 import {resetHomeFields} from "../redux/action-creators/homeActions";
+import {getLessonDates} from "../redux/action-creators/scheduleActions";
 
 //SideBar
 export interface ISideProps {
@@ -41,6 +42,7 @@ export interface IHomeProps{
 //ScheduleTable
 export interface IScheduleTableProps{
     users: TUsers
+    getLessonDates: ()=> void
 }
 
 //NoUsers

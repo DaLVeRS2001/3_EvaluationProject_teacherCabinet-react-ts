@@ -6,6 +6,19 @@
   }
 }
 
+@mixin customPlus($size, $plusSize){
+         @include scale($size,$size);
+         margin-right: 7px;
+         border-radius: 50%;
+
+         &:before {
+           content: "+";
+           @include flex(flex, center, center, null);
+           @include scale($size,$size);
+           @include makeLightText($plusSize, bolder, white);
+         }
+       }
+
 @mixin customBtn($fs, $c, $bg, $br, $p){
   button{
     font-size: $fs;

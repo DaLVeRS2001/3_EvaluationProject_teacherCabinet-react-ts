@@ -12,6 +12,10 @@
 
 
   &__switchers {
+    div{
+      display: flex;
+      justify-content: space-between;
+    }
     hr {
       border: 0;
       background: #f5f5f5;
@@ -38,22 +42,40 @@
       }
     }
     tbody{
-
       td{
         position: relative;
-        border-radius: 50%;
         word-wrap: break-word;
-        div{
+        .schedule__content{
           position: absolute;
-          left: 0;
-          top: 6px;
-          background: #28f663;
+          left: 5px;
+          top: 5px;
           border-radius: 5px;
+          width: 95%;
           height: 40px;
-          margin-left: 5px;
+
+          &:hover{
+            $size: 22px;
+            border: 3px #235390 dashed;
+            cursor: pointer;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:after{
+              content: "Новый урок";
+              @include makeLightText(18px, bolder, #235390);
+            }
+             div{
+               background: #235390;
+               @include customPlus(22px, 22px);
+              }
+
+          }
         }
       }
+
       th{
+
         border-right: 1px solid #E2E2E2;
       }
       tr{

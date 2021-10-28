@@ -13,16 +13,6 @@
   transition: box-shadow .15s ease-in;
 
   &__plus{
-    $size:  23px;
-    @include scale($size,$size);
-    margin-right: 7px;
-    border-radius: 50%;
-
-    &:before {
-      content: "+";
-      @include flex(flex, center, center, null);
-      @include scale($size,$size);
-      @include makeLightText(22px, bolder, white);
-    }
+    @include customPlus(23px, 22px);
   }
 }

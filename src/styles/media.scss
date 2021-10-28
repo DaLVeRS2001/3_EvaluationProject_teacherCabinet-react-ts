@@ -95,12 +95,7 @@ $max-width3: 400px;
     padding: 7px 4px;
     @include makeLightText(15px, bold, null);
     .addBtn__plus{
-      $size:  17px;
-      @include scale($size,$size);
-      &:before{
-        @include scale($size,$size);
-        @include makeLightText($size, bolder, white);
-      }
+      @include customPlus(17px, 15px);
     }
   }
 }

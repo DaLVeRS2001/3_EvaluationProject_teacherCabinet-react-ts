@@ -6,7 +6,6 @@ export type ObjNonNullable<T> = {
 }
 
 
-
 export type CorrectRequest<T> = T extends "post" | "put" ? {url: string, method: Method , body: any}
     :  (T extends "get" | "delete" ?  {url: string, method: Method}
     : never)

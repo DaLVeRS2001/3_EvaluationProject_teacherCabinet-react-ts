@@ -20,8 +20,8 @@ const CustomSlider: React.FC<ICustomSlider> =
         calc: number = ((100 / shownItemCount) * skippedItemsCount) * currentPage;
 
         useEffect(()=> {
-            console.log(currentPage)
-        }, [currentPage])
+            setCurrentPage(0)
+        }, [skippedItemsCount])
 
     const controlHandler = (ctrlType: 'next' | 'prev'): void => {
         ctrlType === 'next'
@@ -44,6 +44,7 @@ const CustomSlider: React.FC<ICustomSlider> =
                         </div>)}
                     </div>
                 </div>
+
                 <img
                     className={cSliderS.cSlider__control} hidden={currentPage+1 === totalPages}  data-control={'next'}
                     onClick={(e)=> controlHandler('next')} src={next} alt="->"
@@ -52,6 +53,7 @@ const CustomSlider: React.FC<ICustomSlider> =
                     className={cSliderS.cSlider__control} hidden={currentPage===0} data-control={'prev'}
                     onClick={(e)=> controlHandler('prev')} src={next} alt="<-"
                 />
+
             </div>
         </div>
     )
