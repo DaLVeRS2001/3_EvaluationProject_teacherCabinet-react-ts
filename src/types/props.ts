@@ -2,6 +2,7 @@ import {IArgIsOpen} from "./reducerTypes/app";
 import {TCommonUsers, TStudModal, TUser, TUsers} from "./reducerTypes/home";
 import {resetHomeFields} from "../redux/action-creators/homeActions";
 import {getLessonDates} from "../redux/action-creators/scheduleActions";
+import {TLessonDates} from "./reducerTypes/schedule";
 
 //SideBar
 export interface ISideProps {
@@ -42,6 +43,7 @@ export interface IHomeProps{
 //ScheduleTable
 export interface IScheduleTableProps{
     users: TUsers
+    lessonDates: TLessonDates
     getLessonDates: ()=> void
 }
 
@@ -96,4 +98,10 @@ export interface ICustomSlider{
     items: TCommonUsers
     skippedItemsCount?: number
     shownItemCount?: number
+}
+
+//DateSwitcher
+export interface IDateSwitcher{
+    dateLang: string | 'ru' | 'en'
+    isShortcut: boolean
 }

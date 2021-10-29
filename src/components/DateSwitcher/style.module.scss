@@ -1,3 +1,35 @@
-.dateSwitcher{
+@import "../../styles/assets";
+@import "../../styles/media";
 
+.dateSwitcher{
+  width: 230px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  span{
+    width: 100%;
+    margin: 0 25px;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  &__switcher{
+    @include scale(16px, 16px);
+    cursor: pointer;
+    position: absolute;
+    transition: width .1s ease-in, height .1s ease-in;
+
+    &:hover{
+      @include scale(17px, 17px);
+    }
+
+    &[data-switcher='prev']{
+      transform: rotate(90deg);
+      left: -1px;
+    }
+    &[data-switcher='next']{
+      transform: rotate(-90deg);
+      right: 0;
+    }
+  }
 }

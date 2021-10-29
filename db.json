@@ -18,19 +18,19 @@
   ],
   "lessonDates": [
     {
-      "date": "08.07.2021",
+      "date": "01.01.2021",
       "studentName": "Константин",
       "timeStart": "8:00",
       "timeFinish": "10:00"
     },
     {
-      "date": "08.07.2021",
+      "date": "08.03.2021",
       "studentName": "Константин2",
       "timeStart": "8:00",
       "timeFinish": "8:00"
     },
     {
-      "date": "08.07.2021",
+      "date": "025.07.2021",
       "studentName": "Константин3",
       "timeStart": "8:00",
       "timeFinish": "9:00"

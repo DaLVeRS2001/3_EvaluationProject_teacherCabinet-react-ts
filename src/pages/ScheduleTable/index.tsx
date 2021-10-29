@@ -13,7 +13,7 @@ import {getLessonDates} from "../../redux/action-creators/scheduleActions";
 
 
 
-const ScheduleTable:React.FC<IScheduleTableProps> = ({users, getLessonDates}) => {
+const ScheduleTable:React.FC<IScheduleTableProps> = ({users, lessonDates, getLessonDates}) => {
     const {months, weekDays} = new CertainData().getModel()
     const [selectedBlock, setSelectedBlock] = useState<null|string>(null)
 
@@ -28,7 +28,7 @@ const ScheduleTable:React.FC<IScheduleTableProps> = ({users, getLessonDates}) =>
                 <div className={tableS.schedule__switchers}>
                     <div>
                         <CustomSwitchers onHandler={(el) => setSelectedBlock(el)} titles={['Расписание', 'Успеваемость']}/>
-                        <DateSwitcher/>
+                        <DateSwitcher dateLang={'ru'} isShortcut={true}/>
                     </div>
                     <hr/>
                 </div>
