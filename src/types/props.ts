@@ -44,7 +44,9 @@ export interface IHomeProps{
 export interface IScheduleTableProps{
     users: TUsers
     lessonDates: TLessonDates
+    currentDate: Date
     getLessonDates: ()=> void
+    setCurrentDate: (date: Date)=> void
 }
 
 //NoUsers
@@ -104,4 +106,5 @@ export interface ICustomSlider{
 export interface IDateSwitcher{
     dateLang: string | 'ru' | 'en'
     isShortcut: boolean
+    setCurrentDate: (date: Date)=> void
 }

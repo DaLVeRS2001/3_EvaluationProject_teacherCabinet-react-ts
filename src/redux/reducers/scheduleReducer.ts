@@ -1,7 +1,8 @@
 import {IScheduleState, ScheduleActions, ScheduleActionTypes} from "../../types/reducerTypes/schedule";
 
 const initialState: IScheduleState = {
-    lessonDates: []
+    lessonDates: [],
+    currentDate: new Date()
 }
 
 const scheduleReducer = (state = initialState, action: ScheduleActions): IScheduleState => {
@@ -10,6 +11,11 @@ const scheduleReducer = (state = initialState, action: ScheduleActions): ISchedu
             return {
                 ...state,
                 lessonDates: action.payload
+            }
+        case ScheduleActionTypes.CURRENT_DATE:
+            return {
+                ...state,
+                currentDate: action.payload
             }
         default:
             return state

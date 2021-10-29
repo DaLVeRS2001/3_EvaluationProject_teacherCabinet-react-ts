@@ -5,7 +5,7 @@ export const Routes = () => {
     return (
         <main>
             <Switch>
-                <Route path={'/'}><Home/></Route>
+                <Route exact path={'/'}><Home/></Route>
             </Switch>
         </main>
     )

@@ -7,15 +7,20 @@ import DateSwitcher from "../../components/DateSwitcher";
 import {connect} from "react-redux";
 import {RootReducers} from "../../redux/reducers";
 import {IScheduleConnectState} from "../../types/reducerTypes/schedule";
-import {getLessonDates} from "../../redux/action-creators/scheduleActions";
+import {getLessonDates, setCurrentDate} from "../../redux/action-creators/scheduleActions";
+import myLocalStorage from "../../services/myLocalStorage";
 
 
 
 
 
-const ScheduleTable:React.FC<IScheduleTableProps> = ({users, lessonDates, getLessonDates}) => {
-    const {months, weekDays} = new CertainData().getModel()
+const ScheduleTable:React.FC<IScheduleTableProps> = ({users, lessonDates, currentDate, getLessonDates, setCurrentDate}) => {
+    const [parsedCurrentDate, setParsedCurrentDate] = useState('')
     const [selectedBlock, setSelectedBlock] = useState<null|string>(null)
+
+    const {weekDays} = new CertainData().getModel()
+
+    console.log(new Date(currentDate).getDate())
 
     useEffect(() => {
         getLessonDates()
@@ -28,7 +33,7 @@ const ScheduleTable:React.FC<IScheduleTableProps> = ({users, lessonDates, getLes
                 <div className={tableS.schedule__switchers}>
                     <div>
                         <CustomSwitchers onHandler={(el) => setSelectedBlock(el)} titles={['Расписание', 'Успеваемость']}/>
-                        <DateSwitcher dateLang={'ru'} isShortcut={true}/>
+                        <DateSwitcher dateLang={'ru'} isShortcut={true} setCurrentDate={setCurrentDate}/>
                     </div>
                     <hr/>
                 </div>
@@ -41,14 +46,25 @@ const ScheduleTable:React.FC<IScheduleTableProps> = ({users, lessonDates, getLes
                     </tr>
                     </thead>
                     <tbody>
-                    {weekDays.map((day, idx) => <tr key={idx}>
-                        <th>{`${idx + 8}:00`}</th>
-                        {weekDays.map((day, idx)=>  <td key={idx} height={50} >
+                    {weekDays.map((day, idx) => {
+                        const nowTime = `${idx + 8}:00`,
+                            isStudent = lessonDates.forEach((date, idx)=> {
+                                const nowWeek = {
+                                    currentWeek: new Date().getDate(),
+                                    lessonWeek: new Date(date.date).getDay()
+                                }
+                                console.log(nowWeek)
+
+                            })
+                        return <tr key={idx}>
+                            <th>{nowTime}</th>
+                            {weekDays.map((day, idx)=>  <td key={idx} height={50} >
                                 <div  className={tableS.schedule__content}>
                                     <div></div>
                                 </div>
                             </td>)}
-                    </tr>)}
+                        </tr>
+                    })}
                     </tbody>
                 </table>
             </div>
@@ -56,8 +72,9 @@ const ScheduleTable:React.FC<IScheduleTableProps> = ({users, lessonDates, getLes
 }
 
 const mapStateToProps = (state: RootReducers): IScheduleConnectState => ({
-    lessonDates: state.schedule.lessonDates
+    lessonDates: state.schedule.lessonDates,
+    currentDate: state.schedule.currentDate
 })
 
 
-export default connect(mapStateToProps, {getLessonDates})(ScheduleTable)
+export default connect(mapStateToProps, {getLessonDates, setCurrentDate})(ScheduleTable)
