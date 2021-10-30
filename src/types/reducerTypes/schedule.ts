@@ -1,5 +1,6 @@
 //ALIASES
 export type TLessonDates = { date: string, studentName: string, timeStart: string, timeFinish: string}[]
+export type TLessonDate = { date: string, studentName: string, timeStart: string, timeFinish: string}
 
 //RootState
 export interface IScheduleState{

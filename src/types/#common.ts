@@ -5,10 +5,12 @@ import {ScheduleActions} from "./reducerTypes/schedule";
 import DateTimeFormatOptions = Intl.DateTimeFormatOptions;
 
 //SERVICES
-
 export type TDateShortcut = (
     date: Date, locale?: string | 'default' | 'ru' | 'en', options?: DateTimeFormatOptions
 ) => string
+
+export type TGetRandomColor = (colors: string[]) => string | never
+
 
 //REDUX
 type AllActions = HomeActions | AppActions | ScheduleActions

@@ -7,7 +7,9 @@ import {ICustomAddButtonProps} from "../../types/props";
 const CustomAddButton: React.FC<ICustomAddButtonProps> = ({btnColor, title, onHandler, style}) => {
 
     function colorError (color: string):never|void {
-        if(color[0] !== '#') throw new Error('This is not color: "'+color+'". Color should starts with: "#"')
+        if(color[0] !== '#') throw new Error(
+            'This is not color: "'+color+'". Color should starts with: "#". Dir: components > CustomAddButton'
+        )
     }
 
     useEffect(()=> {

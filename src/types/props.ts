@@ -41,6 +41,8 @@ export interface IHomeProps{
 }
 
 //ScheduleTable
+export type TParsedStudent = [number, number, string, string] | ''
+export type TNowDate = (el?: any) => {pastWeek: number, currentWeek: number, lessonWeek: number, currentMonth: number, lessonMonth: number}
 export interface IScheduleTableProps{
     users: TUsers
     lessonDates: TLessonDates

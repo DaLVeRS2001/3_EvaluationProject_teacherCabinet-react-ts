@@ -33,6 +33,10 @@
     thead{
       text-align: center;
       background: #F1FCFF;
+      span{
+        color: #235390;
+        font-size: 25px;
+      }
       th:first-child{
         border-right: 1px solid #E2E2E2;
       }
@@ -45,37 +49,67 @@
       td{
         position: relative;
         word-wrap: break-word;
+
+
         .schedule__content{
+
           position: absolute;
           left: 5px;
           top: 5px;
           border-radius: 5px;
           width: 95%;
-          height: 40px;
 
-          &:hover{
-            $size: 22px;
-            border: 3px #235390 dashed;
-            cursor: pointer;
-
+          &[data-filled=true]{
             display: flex;
             justify-content: center;
-            align-items: center;
-            &:after{
-              content: "Новый урок";
-              @include makeLightText(18px, bolder, #235390);
+            padding: 10px;
+            div{
+
+              height: 100%;
+              font-size: 16px;
+              font-weight: bold;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              div{
+                margin: 0 0 10px 10px;
+              }
             }
-             div{
-               background: #235390;
-               @include customPlus(22px, 22px);
+
+            img{
+              width: 32px;
+              height: 32px;
+            }
+          }
+
+          &:not([data-filled=true]){
+            &:hover{
+              $size: 22px;
+              border: 3px #235390 dashed;
+              cursor: pointer;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              &:after{
+                content: "Новый урок";
+                @include makeLightText(18px, bolder, #235390);
+              }
+              div{
+                background: #235390;
+                @include customPlus(22px, 22px);
               }
 
+            }
           }
+
+
         }
       }
 
       th{
-
+        color: #4F4F4F;
         border-right: 1px solid #E2E2E2;
       }
       tr{
