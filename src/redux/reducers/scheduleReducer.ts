@@ -2,7 +2,10 @@ import {IScheduleState, ScheduleActions, ScheduleActionTypes} from "../../types/
 
 const initialState: IScheduleState = {
     lessonDates: [],
-    currentDate: new Date()
+    currentDate: {
+        nowDate: new Date(),
+        pastDate: new Date()
+    }
 }
 
 const scheduleReducer = (state = initialState, action: ScheduleActions): IScheduleState => {

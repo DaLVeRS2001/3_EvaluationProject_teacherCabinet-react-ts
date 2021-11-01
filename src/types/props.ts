@@ -2,7 +2,7 @@ import {IArgIsOpen} from "./reducerTypes/app";
 import {TCommonUsers, TStudModal, TUser, TUsers} from "./reducerTypes/home";
 import {resetHomeFields} from "../redux/action-creators/homeActions";
 import {getLessonDates} from "../redux/action-creators/scheduleActions";
-import {TLessonDates} from "./reducerTypes/schedule";
+import {TCurrentDate, TLessonDates} from "./reducerTypes/schedule";
 
 //SideBar
 export interface ISideProps {
@@ -42,13 +42,18 @@ export interface IHomeProps{
 
 //ScheduleTable
 export type TParsedStudent = [number, number, string, string] | ''
-export type TNowDate = (el?: any) => {pastWeek: number, currentWeek: number, lessonWeek: number, currentMonth: number, lessonMonth: number}
+export type TNowDate = (el?: any) => {pastTime: number, currentTime: number, lessonTime: number, currentMonth: number, lessonMonth: any}
 export interface IScheduleTableProps{
     users: TUsers
     lessonDates: TLessonDates
-    currentDate: Date
+    currentDate: TCurrentDate
     getLessonDates: ()=> void
-    setCurrentDate: (date: Date)=> void
+    setCurrentDate: (date: TCurrentDate)=> void
+}
+
+//ScheduleTable > TBody
+export interface ITBodyProps {
+    parseStudent: (idx: number, idx2: number) => TParsedStudent
 }
 
 //NoUsers
@@ -108,5 +113,5 @@ export interface ICustomSlider{
 export interface IDateSwitcher{
     dateLang: string | 'ru' | 'en'
     isShortcut: boolean
-    setCurrentDate: (date: Date)=> void
+    setCurrentDate: (date: TCurrentDate)=> void
 }

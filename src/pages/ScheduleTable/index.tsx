@@ -1,16 +1,14 @@
 import React, {useEffect, useState} from "react";
 import tableS from "./style.module.scss"
-import CertainData from "../../services/getCertainData";
 import CustomSwitchers from "../../components/CustomSwitchers";
 import {IScheduleTableProps, TNowDate, TParsedStudent} from "../../types/props";
 import DateSwitcher from "../../components/DateSwitcher";
 import {connect} from "react-redux";
 import {RootReducers} from "../../redux/reducers";
-import {IScheduleConnectState, TLessonDate} from "../../types/reducerTypes/schedule";
+import {IScheduleConnectState} from "../../types/reducerTypes/schedule";
 import {getLessonDates, setCurrentDate} from "../../redux/action-creators/scheduleActions";
-import {getRandomColor} from "../../services/getRandomColor";
-import ava from "../../assets/sidebar/anonymous.svg"
 import {TBody} from "./TBody";
+import {THead} from "./THead";
 
 
 
@@ -19,26 +17,26 @@ import {TBody} from "./TBody";
 const ScheduleTable: React.FC<IScheduleTableProps> = ({users, lessonDates, currentDate, getLessonDates, setCurrentDate}) => {
     const [selectedBlock, setSelectedBlock] = useState<null|string>(null)
 
-    const {weekDays} = new CertainData().getModel()
-
     const getNowDate: TNowDate = (el) => ({
-        pastWeek: new Date(new Date(currentDate).setDate(currentDate.getDate()- 7)).getDate(),
-        currentWeek: currentDate.getDate(),
-        lessonWeek: new Date(el.date).getDate(),
-        currentMonth: new Date(currentDate).getMonth(),
+        pastTime: new Date(currentDate.pastDate).getTime(),
+        currentTime: new Date(currentDate.nowDate).getTime(),
+        lessonTime: new Date(el.date).getTime(),
+        currentMonth: new Date(currentDate.nowDate).getMonth(),
         lessonMonth: new Date(el.date).getMonth()
     })
 
     const parseStudent = (idx: number, idx2: number): TParsedStudent => {
         return lessonDates.map((el): TParsedStudent => {
-            const tableDay: number = new Date(new Date(el.date).setDate(new Date(el.date).getDate() - 1)).getDay(),
-                tableTime: number = +el.timeStart.split(':')[0] - 8,
+            const tableDay: number = new Date(new Date(el.date).setDate(new Date(el.date).getDate()-1)).getDay(), //td
+                tableTime: number = +el.timeStart.split(':')[0] - 8, //tr
+                //const tableDay: number = new Date(new Date(el.date).setDate(new Date(el.date).getDate() - 1)).getDay()
                 is: boolean =
                     idx === tableTime && idx2 === tableDay
-                    && getNowDate(el).lessonWeek >= getNowDate(el).pastWeek
-                    && getNowDate(el).lessonWeek <= getNowDate(el).currentWeek
+                    && getNowDate(el).lessonTime >= getNowDate(el).pastTime
+                    && getNowDate(el).lessonTime <= getNowDate(el).currentTime
                     && getNowDate(el).lessonMonth === getNowDate(el).currentMonth
-
+           // console.log((getNowDate(el).lessonWeek) +' '+ (getNowDate(el).pastWeek) + ' '+ el.studentName)
+            //getNowDate(el).lessonWeek >= getNowDate(el).pastWeek
             if (is) return [idx, idx2, el.studentName, el.timeFinish]
             return ''
         }).filter(el => el)[0]
@@ -59,13 +57,7 @@ const ScheduleTable: React.FC<IScheduleTableProps> = ({users, lessonDates, curre
                     <hr/>
                 </div>
                 <table className={tableS.schedule__table}>
-                    <thead>
-                    <tr>
-                        <th/>
-                        {weekDays.map((day, idx) =>
-                            <th key={idx}><span>{idx + 1}</span><br/>{day}</th>)}
-                    </tr>
-                    </thead>
+                    <THead/>
                     <TBody parseStudent={parseStudent}/>
                 </table>
             </div>

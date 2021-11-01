@@ -1,11 +1,12 @@
 //ALIASES
 export type TLessonDates = { date: string, studentName: string, timeStart: string, timeFinish: string}[]
 export type TLessonDate = { date: string, studentName: string, timeStart: string, timeFinish: string}
+export type TCurrentDate = { nowDate: Date, pastDate: Date }
 
 //RootState
 export interface IScheduleState{
-    lessonDates: TLessonDates,
-    currentDate: Date
+    lessonDates: TLessonDates
+    currentDate: TCurrentDate
 }
 
 //ENUMS
@@ -21,7 +22,7 @@ interface ILessonDatesAction{
 }
 interface ICurrentDateAction{
     type: ScheduleActionTypes.CURRENT_DATE,
-    payload: Date
+    payload:  TCurrentDate
 }
 
 //RootActionsType
@@ -30,7 +31,7 @@ export type ScheduleActions =  ILessonDatesAction | ICurrentDateAction
 //CONNECT STATES
 export interface IScheduleConnectState{
     lessonDates: TLessonDates,
-    currentDate: Date
+    currentDate: TCurrentDate
 }
 
 

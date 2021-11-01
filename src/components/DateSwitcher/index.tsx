@@ -3,32 +3,32 @@ import dateSwS from "./style.module.scss"
 import arrow from "../../assets/arrow.svg"
 import {dateShortcut} from "../../services/getDateShortcut";
 import {IDateSwitcher} from "../../types/props";
-import myLocalStorage from "../../services/myLocalStorage";
 
 
 
 
 const DateSwitcher: React.FC<IDateSwitcher> = ({dateLang, isShortcut, setCurrentDate}) => {
-    const year: number = new Date().getFullYear()
+    const year: number = new Date().getFullYear(),
+        defaultDate = new Date(year, 0)
 
-    const [nowDate, setNowDate] = useState<Date>(new Date(year, 0, 8)),
-        pastDate: Date = new Date(new Date(nowDate).setDate(nowDate.getDate() - 7)),
-        dateNowShortcut = dateShortcut(nowDate, dateLang, {month: isShortcut ? "short" : "long"}),
-        datePastShortcut = dateShortcut(pastDate, dateLang, {month: isShortcut ? "short" : "long"});
+    const [pastDate, setPastDate] = useState<Date>(new Date(new Date(defaultDate)
+            .setDate(defaultDate.getDate() - defaultDate.getDay() + 1))),
+        nowDate: Date = new Date(new Date(pastDate).setDate(pastDate.getDate()+6)),
+        dateNowShortcut: string = dateShortcut(nowDate, dateLang, {month: isShortcut ? "short" : "long"}),
+        datePastShortcut: string = dateShortcut(pastDate, dateLang, {month: isShortcut ? "short" : "long"});
 
     useEffect(()=> {
-        const parsedCurrentDate = nowDate
-        setCurrentDate(parsedCurrentDate)
+        setCurrentDate({nowDate, pastDate})
         //eslint-disable-next-line
-    }, [nowDate])
+    }, [pastDate])
 
     const activeWeek = `${pastDate.getDate()} ${datePastShortcut} - ${nowDate.getDate()} ${dateNowShortcut}`
         .replace(/\./g, '')
 
     const dateSwitcher = (actionType: 'prev' | 'next'): void => {
         actionType === 'prev'
-            ? setNowDate(new Date(new Date(nowDate).setDate(nowDate.getDate() - 7)))
-            : setNowDate(new Date(new Date(nowDate).setDate(nowDate.getDate() + 7)))
+            ? setPastDate(new Date(new Date(pastDate).setDate(pastDate.getDate() - 7)))
+            : setPastDate(new Date(new Date(pastDate).setDate(pastDate.getDate() + 7)))
     }
 
     return (
@@ -37,12 +37,12 @@ const DateSwitcher: React.FC<IDateSwitcher> = ({dateLang, isShortcut, setCurrent
             <img
                 src={arrow} alt="<" className={dateSwS.dateSwitcher__switcher}
                 onClick={()=>dateSwitcher('prev')} data-switcher={'prev'}
-                hidden={nowDate.getMonth() === 0 && nowDate.getDate() <= 8}
+                hidden={nowDate.getMonth() === 0 && nowDate.getDate() <= 8 && nowDate.getFullYear() === year}
             />
             <img
                 src={arrow} alt=">" className={dateSwS.dateSwitcher__switcher}
                 onClick={()=>dateSwitcher('next')} data-switcher={'next'}
-                hidden={nowDate.getMonth() === 11 && nowDate.getDate() > 30}
+              hidden={ nowDate.getFullYear() !== year || (nowDate.getDate() === 31 && nowDate.getMonth() === 11)}
             />
         </div>
     )

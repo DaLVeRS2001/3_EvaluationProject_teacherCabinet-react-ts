@@ -19,13 +19,31 @@
   "lessonDates": [
     {
       "date": "01.01.2021",
-      "studentName": "Константин",
+      "studentName": "Константин 1",
+      "timeStart": "8:00",
+      "timeFinish": "10:00"
+    },
+    {
+      "date": "01.02.2021",
+      "studentName": "Константин 1 1",
+      "timeStart": "8:00",
+      "timeFinish": "10:00"
+    },
+    {
+      "date": "02.01.2021",
+      "studentName": "Константин 1 1 1",
       "timeStart": "8:00",
       "timeFinish": "10:00"
     },
     {
       "date": "03.08.2021",
       "studentName": "Константин2",
+      "timeStart": "8:00",
+      "timeFinish": "8:00"
+    },
+    {
+      "date": "03.14.2021",
+      "studentName": "Константин 2 2",
       "timeStart": "8:00",
       "timeFinish": "8:00"
     },
