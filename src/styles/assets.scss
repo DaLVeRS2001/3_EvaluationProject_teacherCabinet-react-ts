@@ -6,18 +6,18 @@
   }
 }
 
-@mixin customPlus($size, $plusSize){
-         @include scale($size,$size);
-         margin-right: 7px;
-         border-radius: 50%;
+@mixin customPlus($size, $plusSize) {
+  @include scale($size, $size);
+  margin-right: 7px;
+  border-radius: 50%;
 
-         &:before {
-           content: "+";
-           @include flex(flex, center, center, null);
-           @include scale($size,$size);
-           @include makeLightText($plusSize, bolder, white);
-         }
-       }
+  &:before {
+    content: "+";
+    @include flex(flex, center, center, null);
+    @include scale($size, $size);
+    @include makeLightText($plusSize, bolder, white);
+  }
+}
 
 @mixin customBtn($fs, $c, $bg, $br, $p){
   button{
@@ -39,8 +39,8 @@
   align-items: $ai;
   justify-content: $jc;
   flex-direction: $fd;
-
 }
+
 @mixin makeText($fs, $ff, $c, $lh, $fw, $ww, $ta){
   font-size: $fs;
   font-family: $ff;
@@ -75,12 +75,18 @@
   grid-column-gap: $gcg;
 }
 
-
 @mixin toPosition($p, $t, $r, $b, $l, $z){
   position: $p;
   top: $t; right: $r; bottom: $b; left: $l;
   z-index: $z;
 }
+
+@mixin makeHr($br, $h, $bg){
+  border: $br;
+  height: $h;
+  background: $bg;
+}
+
 
 
 

@@ -27,18 +27,17 @@ const ScheduleTable: React.FC<IScheduleTableProps> = ({users, lessonDates, curre
 
     const parseStudent = (idx: number, idx2: number): TParsedStudent => {
         return lessonDates.map((el): TParsedStudent => {
+            const parsedTime = [+el.timeStart.split(':')[0], +el.timeFinish.split(':')[0]]
             const tableDay: number = new Date(new Date(el.date).setDate(new Date(el.date).getDate()-1)).getDay(), //td
-                tableTime: number = +el.timeStart.split(':')[0] - 8, //tr
-                //const tableDay: number = new Date(new Date(el.date).setDate(new Date(el.date).getDate() - 1)).getDay()
-                is: boolean =
-                    idx === tableTime && idx2 === tableDay
+                tableTime: any = [parsedTime[0] - 8, parsedTime[1]-8], //tr
+                toIs = (condition: boolean): boolean => condition && idx2 === tableDay
                     && getNowDate(el).lessonTime >= getNowDate(el).pastTime
                     && getNowDate(el).lessonTime <= getNowDate(el).currentTime
                     && getNowDate(el).lessonMonth === getNowDate(el).currentMonth
-           // console.log((getNowDate(el).lessonWeek) +' '+ (getNowDate(el).pastWeek) + ' '+ el.studentName)
-            //getNowDate(el).lessonWeek >= getNowDate(el).pastWeek
-            if (is) return [idx, idx2, el.studentName, el.timeFinish]
-            return ''
+
+            if (toIs(idx === tableTime[0])) return [idx, idx2, el.studentName, el.timeFinish]
+            return toIs(idx <= tableTime[1])
+
         }).filter(el => el)[0]
     }
 

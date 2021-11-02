@@ -3,119 +3,87 @@
 
 
 .schedule{
-  @include gridTemplate(grid,  .1fr 1fr, 1fr, null, null);
-  @include boxShadow(20px);
-  position: relative;
   width: 100%;
-  padding: 20px 25px;
+  position: relative;
   font-size: 21px;
-
+  padding: 20px 25px;
+  @include boxShadow(20px);
+  @include gridTemplate(grid,  .1fr 1fr, 1fr, null, null);
 
   &__switchers {
-    div{
-      display: flex;
-      justify-content: space-between;
-    }
-    hr {
-      border: 0;
-      background: #f5f5f5;
-      height: 1px;
-    }
+    div{ @include flex(flex, null, space-between, null) }
+    hr{ @include makeHr(0, 1px, #f5f5f5) }
   }
 
   &__table{
     border-collapse: collapse;
     @include boxShadow(20px);
-    overflow: hidden;
     text-align: center;
-
+    overflow: hidden;
 
     thead{
-      text-align: center;
       background: #F1FCFF;
+
       span{
         color: #235390;
         font-size: 25px;
       }
-      th:first-child{
-        border-right: 1px solid #E2E2E2;
-      }
       th{
-        padding: 15px 0;
         width: 9%;
+        padding: 15px 0;
+        &:first-child{
+          border-right: 1px solid #E2E2E2;
+        }
       }
     }
+
     tbody{
       td{
         position: relative;
-        word-wrap: break-word;
-
 
         .schedule__content{
-
-          position: absolute;
-          left: 5px;
-          top: 5px;
+          @include toPosition(absolute, 5px, null, null, 5px, null);
+          @include scale(95%,  60px);
+          word-break: break-word;
           border-radius: 5px;
-          width: 95%;
+          padding: 10px;
 
           &[data-filled=true]{
-            display: flex;
-            justify-content: center;
-            padding: 10px;
             div{
-
-              height: 100%;
+              display: flex;
               font-size: 16px;
               font-weight: bold;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-
-              div{
-                margin: 0 0 10px 10px;
-              }
+              div{margin-left: 5px}
             }
-
-            img{
-              width: 32px;
-              height: 32px;
-            }
+            img{ @include scale(32px, 32px) }
           }
 
-          &:not([data-filled=true]){
+          &[data-filled=false]{
             &:hover{
               $size: 22px;
-              border: 3px #235390 dashed;
               cursor: pointer;
+              border: 3px #235390 dashed;
+              @include flex(flex, center, center, null);
 
-              display: flex;
-              justify-content: center;
-              align-items: center;
               &:after{
                 content: "Новый урок";
                 @include makeLightText(18px, bolder, #235390);
               }
               div{
+                @include customPlus($size, $size);
                 background: #235390;
-                @include customPlus(22px, 22px);
               }
-
             }
           }
-
-
         }
-      }
+      }//td
 
-      th{
+      th{//tableTime
         color: #4F4F4F;
         border-right: 1px solid #E2E2E2;
       }
-      tr{
-        border-bottom: 1px solid #E2E2E2;
-      }
-    }
+      tr{border-bottom: 1px solid #E2E2E2}
+    }//tbody
   }
 }
 
