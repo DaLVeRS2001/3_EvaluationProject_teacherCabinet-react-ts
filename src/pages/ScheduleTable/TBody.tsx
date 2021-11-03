@@ -28,15 +28,13 @@ export const TBody: React.FC<ITBodyProps> = ({parseStudent}) => {
             return <tr key={idx}>
                 <th>{nowTime}</th>
                 {weekDays.map((day, idx2) => {
-                    const parsed: TParsedStudent = parseStudent(idx, idx2),
-                        isStudent: boolean | '' = parsed && (idx === parsed[0] && idx2 === parsed[1]),
-                        isUnderStudent = parsed
+                    const parsed: TParsedStudent  = parseStudent(idx, idx2),
+                        isStudent: boolean  = parsed && (idx === parsed[0] && idx2 === parsed[1])
 
 
                     return <td  key={idx2} height={70}>
                         {isStudent
                             ? <div
-                                onClick={()=> console.log(isUnderStudent)}
                                 style={{
                                     height: countElHeight(parsed[3]), background: getRandomColor(randomColors)
                                 }}

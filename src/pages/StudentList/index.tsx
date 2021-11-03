@@ -4,23 +4,27 @@ import CustomSlider from "../../components/CustomSlider";
 import getMedia from "../../services/getMedia";
 import {useEffect, useState} from "react";
 import SearchStudents from "../../components/SearchStudents/SearchStudents";
+import {RootReducers} from "../../redux/reducers";
+import {IStudentListConnectState} from "../../types/reducerTypes/app";
+import {connect} from "react-redux";
+import {setAppCurrentWidth} from "../../redux/action-creators/appActions";
 
 
 interface IStudentList{
+    setAppCurrentWidth: (width: number)=> void
+    currentWidth: number
     students: TUsers
 }
 
-const StudentList:React.FC<IStudentList> = ({students}) => {
-    const [currentWidth, setCurrentWidth] = useState<number>(0)
-    const {maxWidthMedias} = getMedia()
+const StudentList:React.FC<IStudentList> = ({students, currentWidth, setAppCurrentWidth}) => {
 
 
     useEffect(() => {
-        setCurrentWidth(window.innerWidth)
+        setAppCurrentWidth(window.innerWidth)
 
         const listener = (): void => {
             const WI = window.innerWidth
-            setCurrentWidth(WI)
+            setAppCurrentWidth(WI)
         }
         window.addEventListener('resize', listener)
 
@@ -46,6 +50,8 @@ const StudentList:React.FC<IStudentList> = ({students}) => {
 }
 
 
+const mapStateToProps = (state: RootReducers): IStudentListConnectState => ({
+    currentWidth: state.app.currentWidth
+})
 
-
-export default StudentList
+export default connect(mapStateToProps, {setAppCurrentWidth})(StudentList)

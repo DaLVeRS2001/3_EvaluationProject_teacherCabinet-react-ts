@@ -38,16 +38,17 @@ $max-width3: 400px;
   }
 }
 
+
 @mixin homeMedia() {
   @media (max-width: 400px) {
     @include gridTemplate(grid, null, 70vw, 17px, null);
     justify-content: center;
-
   }
   @media (max-width: 350px) {
     @include gridTemplate(grid, null, 240px, 17px, null);
   }
 }
+
 
 @mixin studentMedia() {
   @media(max-width: $max-width1) {
@@ -71,7 +72,6 @@ $max-width3: 400px;
       }
     }
   }
-
   @media(max-width: $max-width2) {
     text-align: center;
 
@@ -83,9 +83,6 @@ $max-width3: 400px;
     }
   }
 }
-
-
-
 
 
 @mixin addBtnMedia() {
@@ -113,13 +110,6 @@ $max-width3: 400px;
     .noUsers__icon{
       @include scale(130px, null);
     }
-  }
-}
-
-
-@mixin scheduleMedia() {
-  @media(max-width: $max-width1) {
-
   }
 }
 
@@ -152,6 +142,7 @@ $max-width3: 400px;
   }
 }
 
+
 @mixin addStudModalMedia() {
   @media(max-width: $max-width1) {
           main{ input{width: 250px; font-size: 16px} }
@@ -171,6 +162,7 @@ $max-width3: 400px;
   }
 }
 
+
 @mixin invitationSuccessModalMedia() {
   @media(max-width: $max-width1) {
     main{ img{width: 55px} }
@@ -179,6 +171,7 @@ $max-width3: 400px;
     main{ img{width: 50px} }
   }
 }
+
 
 @mixin cSliderMedia() {
   @media(max-width: 1300px) {max-width: 550px}
@@ -195,3 +188,101 @@ $max-width3: 400px;
     }
   }
 }
+
+
+@mixin scheduleMedia() {
+  @media(max-width: 1400px) {
+
+    .schedule__table{
+
+      tbody{
+        .schedule__content{
+
+          &[data-filled=true]{
+            div{
+              font-size: 13px;
+              div{margin-left: 2px}
+            }
+            img{ @include scale(25px, 25px) }
+          }
+          &[data-filled=false]{
+            &:hover{
+              $size: 20px;
+              &:after{
+                @include makeLightText(15px, bolder, #235390);
+              }
+              div{
+                @include customPlus($size, $size);
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+  @media(max-width: 1100px) {
+
+    width: 100%;
+    font-size: 21px;
+    padding: 20px 25px;
+    @include boxShadow(20px);
+    @include gridTemplate(grid, .1fr 1fr, 1fr, null, null);
+
+    .schedule__switchers{}
+    .schedule__table{
+      thead{
+        span{
+          font-size: 25px;
+        }
+        th{
+          width: 9%;
+          padding: 15px 0;
+        }
+      }
+      tbody{
+        .schedule__content{
+          @include toPosition(absolute, 5px, null, null, 5px, null);
+          @include scale(95%,  60px);
+          padding: 10px;
+          &[data-filled=true]{
+            div{
+              font-size: 16px;
+              div{margin-left: 5px}
+            }
+            img{ @include scale(32px, 32px) }
+          }
+          &[data-filled=false]{
+            &:hover{
+              $size: 22px;
+              &:after{
+                @include makeLightText(18px, bolder, #235390);
+              }
+              div{
+                @include customPlus($size, $size);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

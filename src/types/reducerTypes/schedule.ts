@@ -32,6 +32,7 @@ export type ScheduleActions =  ILessonDatesAction | ICurrentDateAction
 export interface IScheduleConnectState{
     lessonDates: TLessonDates,
     currentDate: TCurrentDate
+    currentWidth: number
 }
 
 

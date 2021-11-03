@@ -4,6 +4,10 @@ import {AppActions} from "./reducerTypes/app";
 import {ScheduleActions} from "./reducerTypes/schedule";
 import DateTimeFormatOptions = Intl.DateTimeFormatOptions;
 
+//TRASH
+export type TColors = `#${string}`[]
+
+
 //SERVICES
 export type TDateShortcut = (
     date: Date, locale?: string | 'default' | 'ru' | 'en', options?: DateTimeFormatOptions

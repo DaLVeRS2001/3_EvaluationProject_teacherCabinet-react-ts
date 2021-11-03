@@ -6,7 +6,8 @@ const initialState: IAppState = {
     isOpenSidebar: {
         hidden: false,
         is: false
-    }
+    },
+    currentWidth: 0
 }
 
 
@@ -16,6 +17,11 @@ const appReducer = (state = initialState, action: AppActions):IAppState  => {
             return {
                 ...state,
                 isOpenSidebar: action.payload
+            }
+        case AppActionTypes.APP_CURRENT_WIDTH:
+            return {
+                ...state,
+                currentWidth: action.payload
             }
         default:
             return state

@@ -1,29 +1,26 @@
-import React, {useEffect, useState} from "react";
-import tableS from "./style.module.scss"
-import CustomSwitchers from "../../components/CustomSwitchers";
-import {IScheduleTableProps, TCountElHeight, TNowDate, TParsedStudent} from "../../types/props";
-import DateSwitcher from "../../components/DateSwitcher";
-import {connect} from "react-redux";
-import {RootReducers} from "../../redux/reducers";
-import {IScheduleConnectState} from "../../types/reducerTypes/schedule";
-import {getLessonDates, setCurrentDate} from "../../redux/action-creators/scheduleActions";
-import {TBody} from "./TBody";
-import {THead} from "./THead";
+import tableS from "./style.module.scss";
+import React from "react";
 import {THeadM} from "./mobile/THeadM";
 import {TBodyM} from "./mobile/TBodyM";
-import CertainData from "../../services/getCertainData";
+import {TCountElHeight, TNowDate, TParsedStudent} from "../../types/props";
 import {TColors} from "../../types/#common";
-import {Table} from "./Table";
+import {TCurrentDate, TLessonDates} from "../../types/reducerTypes/schedule";
+import CertainData from "../../services/getCertainData";
 
 
+interface ITable{
+    isMobile?: {
+        is: boolean,
+        columnCount: number
+    }
+    lessonDates: TLessonDates
+    currentDate: TCurrentDate
+}
 
-
-
-
-const ScheduleTable: React.FC<IScheduleTableProps> = ({users, lessonDates, currentDate, getLessonDates, setCurrentDate}) => {
-    const [selectedBlock, setSelectedBlock] = useState<null|string>(null)
+export const Table: React.FC<ITable> = ({isMobile, lessonDates, currentDate}) => {
 
     const {weekDays} = new CertainData().getModel()
+
     const getNowDate: TNowDate = (el) => ({
         pastTime: new Date(currentDate.pastDate).getTime(),
         currentTime: new Date(currentDate.nowDate).getTime(),
@@ -60,37 +57,35 @@ const ScheduleTable: React.FC<IScheduleTableProps> = ({users, lessonDates, curre
         }).filter(el => el)[0]
     }
 
-    useEffect(() => {
-        getLessonDates()
-        //eslint-disable-next-line
-    }, [])
-    const someCount = 2
     const copyWeek = weekDays.map((el, idx, arr)=> {
-        const num = (idx+1)*someCount
-        return arr.slice(num-someCount, num)
+        if(isMobile){
+            const num = (idx+1)*isMobile.columnCount
+            return arr.slice(num-isMobile.columnCount, num)
+        }
+        return ''
     }).filter(el=> el.length)
 
-    return (
-            <div className={tableS.schedule}>
-                <div className={tableS.schedule__switchers}>
-                    <div>
-                        <CustomSwitchers onHandler={(el) => setSelectedBlock(el)} titles={['Расписание', 'Успеваемость']}/>
-                        <DateSwitcher dateLang={'ru'} isShortcut={true} setCurrentDate={setCurrentDate}/>
-                    </div>
-                    <hr/>
-                </div>
-
-                <Table lessonDates={lessonDates} currentDate={currentDate} isMobile={{is: true, columnCount: 3}}/>
-
-            </div>
-    )
+    return <table className={tableS.schedule__table}>
+        {[...isMobile ? copyWeek : weekDays].map((partWeek, idx)=> {
+            return <React.Fragment key={idx}>
+                <THeadM
+                    isMobile={isMobile && {
+                    is: isMobile.is,
+                    indexSpan: isMobile.columnCount,
+                    tablePartCount: (isMobile.columnCount*(idx+1))
+                    }}
+                />
+                <TBodyM
+                    countElHeight={countElHeight}
+                    parseStudent={parseStudent}
+                    randomColors={randomColors}
+                    isMobile={isMobile && {
+                        is: isMobile.is,
+                        indexSpan: isMobile.columnCount,
+                        tablePartCount: (isMobile.columnCount*(idx+1))
+                    }}
+                />
+            </React.Fragment>
+        })}
+    </table>
 }
-
-const mapStateToProps = (state: RootReducers): IScheduleConnectState => ({
-    lessonDates: state.schedule.lessonDates,
-    currentDate: state.schedule.currentDate,
-    currentWidth: state.app.currentWidth
-})
-
-
-export default React.memo(connect(mapStateToProps, {getLessonDates, setCurrentDate})(ScheduleTable))

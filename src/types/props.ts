@@ -3,6 +3,8 @@ import {TCommonUsers, TStudModal, TUser, TUsers} from "./reducerTypes/home";
 import {resetHomeFields} from "../redux/action-creators/homeActions";
 import {getLessonDates} from "../redux/action-creators/scheduleActions";
 import {TCurrentDate, TLessonDates} from "./reducerTypes/schedule";
+import React from "react";
+import {TColors} from "./#common";
 
 //SideBar
 export interface ISideProps {
@@ -41,19 +43,38 @@ export interface IHomeProps{
 }
 
 //ScheduleTable
-export type TParsedStudent = [number, number, string, string] | any
-export type TNowDate = (el?: any) => {pastTime: number, currentTime: number, lessonTime: number, currentMonth: number, lessonMonth: any}
+export type TParsedStudent = [number, number, string, string, string];
+export type TNowDate = (el?: any) =>
+    {pastTime: number, currentTime: number, lessonTime: number, currentMonth: number, lessonMonth: any};
+export type TCountElHeight = (timeStart: string, timeFinish: string, defaultHeight?: number)=> number
+export type TIsMobile = {
+    is: boolean,
+    tablePartCount: number
+    indexSpan: number
+}
+
 export interface IScheduleTableProps{
     users: TUsers
     lessonDates: TLessonDates
     currentDate: TCurrentDate
+    currentWidth: number
     getLessonDates: ()=> void
     setCurrentDate: (date: TCurrentDate)=> void
 }
 
 //ScheduleTable > TBody
 export interface ITBodyProps {
-    parseStudent: (idx: number, idx2: number) => TParsedStudent
+    parseStudent: (idx: number, idx2: number) => any
+    countElHeight: TCountElHeight
+    randomColors:  TColors
+}
+export interface ITBodyMProps extends ITBodyProps{
+    isMobile?: TIsMobile
+}
+
+//ScheduleTable > THead
+export interface ITHeadM {
+    isMobile?: TIsMobile
 }
 
 //NoUsers

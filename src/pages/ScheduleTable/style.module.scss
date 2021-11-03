@@ -2,14 +2,15 @@
 @import "../../styles/media";
 
 
+
 .schedule{
+  @include scheduleMedia;
   width: 100%;
   position: relative;
   font-size: 21px;
   padding: 20px 25px;
   @include boxShadow(20px);
-  @include gridTemplate(grid,  .1fr 1fr, 1fr, null, null);
-
+  @include gridTemplate(grid, .1fr 1fr, 1fr, null, null);
   &__switchers {
     div{ @include flex(flex, null, space-between, null) }
     hr{ @include makeHr(0, 1px, #f5f5f5) }
@@ -21,19 +22,29 @@
     text-align: center;
     overflow: hidden;
 
+
+
+
+
+
+
+
     thead{
-      background: #F1FCFF;
+  background: #F1FCFF;
 
       span{
         color: #235390;
         font-size: 25px;
       }
       th{
-        width: 9%;
         padding: 15px 0;
         &:first-child{
           border-right: 1px solid #E2E2E2;
         }
+      }
+
+      &[data-mobile=true]{
+
       }
     }
 
@@ -83,7 +94,49 @@
         border-right: 1px solid #E2E2E2;
       }
       tr{border-bottom: 1px solid #E2E2E2}
+
+      &[data-mobile=true]{
+
+      }
     }//tbody
   }
 }
+
+//
+//tbody{
+//
+//
+//
+//  tr{
+//    margin-bottom: 20px;
+//    td{
+//      display: inline-flex;
+//      flex-direction: column;
+//      margin-bottom: 20px;
+//      .th{
+//        span{
+//          color: #235390;
+//          font-size: 25px;
+//        }
+//        background: #F1FCFF;
+//        height: 50px;
+//        width: 200px;
+//      }
+//      div{
+//        display: flex;
+//        justify-content: center;
+//        align-items: center;
+//        width: 100%;
+//        th{}
+//        div{
+//          display: flex;
+//          flex-direction: column;
+//
+//        }
+//      }
+//    }
+//  }
+//}
+//
+
 
