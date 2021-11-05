@@ -33,7 +33,7 @@ const DateSwitcher: React.FC<IDateSwitcher> = ({dateLang, isShortcut, setCurrent
 
     return (
         <div className={dateSwS.dateSwitcher}>
-            <span>{activeWeek}</span>
+            <span className={dateSwS.dateSwitcher__activeWeek}>{activeWeek}</span>
             <img
                 src={arrow} alt="<" className={dateSwS.dateSwitcher__switcher}
                 onClick={()=>dateSwitcher('prev')} data-switcher={'prev'}

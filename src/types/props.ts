@@ -54,7 +54,6 @@ export type TIsMobile = {
 }
 
 export interface IScheduleTableProps{
-    users: TUsers
     lessonDates: TLessonDates
     currentDate: TCurrentDate
     currentWidth: number
@@ -67,14 +66,22 @@ export interface ITBodyProps {
     parseStudent: (idx: number, idx2: number) => any
     countElHeight: TCountElHeight
     randomColors:  TColors
-}
-export interface ITBodyMProps extends ITBodyProps{
     isMobile?: TIsMobile
 }
 
 //ScheduleTable > THead
-export interface ITHeadM {
+export interface ITHead {
     isMobile?: TIsMobile
+}
+
+//ScheduleTable > Table
+export interface ITable{
+    isMobile?: {
+        is: boolean,
+        columnCount: number
+    }
+    lessonDates: TLessonDates
+    currentDate: TCurrentDate
 }
 
 //NoUsers

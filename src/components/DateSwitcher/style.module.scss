@@ -2,11 +2,12 @@
 @import "../../styles/media";
 
 .dateSwitcher{
+  @include dateSwitcherMedia;
   width: 230px;
   display: flex;
   position: relative;
   align-items: center;
-  span{
+  &__activeWeek{
     width: 100%;
     margin: 0 25px;
     font-size: 20px;

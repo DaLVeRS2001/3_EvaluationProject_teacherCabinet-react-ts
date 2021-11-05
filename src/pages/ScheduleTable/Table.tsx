@@ -1,23 +1,16 @@
 import tableS from "./style.module.scss";
 import React from "react";
-import {THeadM} from "./mobile/THeadM";
-import {TBodyM} from "./mobile/TBodyM";
-import {TCountElHeight, TNowDate, TParsedStudent} from "../../types/props";
+import {THead} from "./THead";
+import {TBody} from "./TBody";
+import {ITable, TCountElHeight, TNowDate, TParsedStudent} from "../../types/props";
 import {TColors} from "../../types/#common";
-import {TCurrentDate, TLessonDates} from "../../types/reducerTypes/schedule";
 import CertainData from "../../services/getCertainData";
 
 
-interface ITable{
-    isMobile?: {
-        is: boolean,
-        columnCount: number
-    }
-    lessonDates: TLessonDates
-    currentDate: TCurrentDate
-}
 
-export const Table: React.FC<ITable> = ({isMobile, lessonDates, currentDate}) => {
+
+export const Table: React.FC<ITable> =
+    ({isMobile, lessonDates, currentDate}) => {
 
     const {weekDays} = new CertainData().getModel()
 
@@ -58,24 +51,22 @@ export const Table: React.FC<ITable> = ({isMobile, lessonDates, currentDate}) =>
     }
 
     const copyWeek = weekDays.map((el, idx, arr)=> {
-        if(isMobile){
-            const num = (idx+1)*isMobile.columnCount
-            return arr.slice(num-isMobile.columnCount, num)
-        }
-        return ''
+        const columns = isMobile ? isMobile.columnCount : 7,
+            num = (idx + 1) * columns;
+        return arr.slice(num - columns, num)
     }).filter(el=> el.length)
 
     return <table className={tableS.schedule__table}>
-        {[...isMobile ? copyWeek : weekDays].map((partWeek, idx)=> {
+        {copyWeek.map((el, idx)=> {
             return <React.Fragment key={idx}>
-                <THeadM
+                <THead
                     isMobile={isMobile && {
                     is: isMobile.is,
                     indexSpan: isMobile.columnCount,
                     tablePartCount: (isMobile.columnCount*(idx+1))
                     }}
                 />
-                <TBodyM
+                <TBody
                     countElHeight={countElHeight}
                     parseStudent={parseStudent}
                     randomColors={randomColors}
